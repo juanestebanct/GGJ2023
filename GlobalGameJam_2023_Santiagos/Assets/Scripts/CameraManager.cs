@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
     private void Awake()
     {
         minimap.SetActive(true); minimapCamera.SetActive(true); openMinimapBtn.SetActive(false);
+        cameras[0].SetActive(false); cameras[1].SetActive(false);
     }
 
     public void ChangeCamera(int camera)
