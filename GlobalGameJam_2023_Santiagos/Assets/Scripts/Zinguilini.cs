@@ -17,6 +17,8 @@ public class Zinguilini : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition();
+        LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition();
         ZinguiliniRb = GetComponent<Rigidbody2D>();
         stead = Speed * Time.deltaTime;
         direction = transform.position - Positions[0].transform.position;
