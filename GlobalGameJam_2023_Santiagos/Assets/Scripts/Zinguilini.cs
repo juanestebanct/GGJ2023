@@ -11,18 +11,23 @@ public class Zinguilini : MonoBehaviour
     [SerializeField] private Transform LastPositions;
     [SerializeField] private int Position;
     [SerializeField] private bool stop;
-    [SerializeField] private float time, stead;
+    public float time, stead;
     Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
     {
-        Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition();
+        int ruta= Random.RandomRange(1,3);
+        Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition(ruta);
         LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition();
         ZinguiliniRb = GetComponent<Rigidbody2D>();
         stead = Speed * Time.deltaTime;
-        direction = transform.position - Positions[0].transform.position;
+        direction = transform.position - Positions[0].position;
+        for(int i = 0; i < Positions.Length; i++)
+        {
+            Positions[i].position= (Positions[i].position + new Vector3(Random.Range(-2, 2), Random.Range(-2,2), 0));
 
+        }
     }
 
     // Update is called once per frame
@@ -31,18 +36,20 @@ public class Zinguilini : MonoBehaviour
         //si hay posiciones de ir va 
         if (!stop && Positions.Length!= (Position))
         {
-
+           
            
             transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead);
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
+
+            
             float a = Vector3.Distance(transform.position, Positions[Position].position);
             if (a==0)
             {
-               
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
                 Position++;
                 Debug.Log(Position); 
                 StartCoroutine(StopOneMoment());
+              
                 if (Positions.Length != (Position))
                 {
                     direction = transform.position - Positions[Position].position;
@@ -70,7 +77,13 @@ public class Zinguilini : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        float DistanMe, OtheListan;
         Debug.Log("coliciono");
+        if (collision.gameObject.GetComponent<Zinguilini>())
+        {
+            Zinguilini othercollision = collision.gameObject.GetComponent<Zinguilini>();
+                StartCoroutine(OtherDirecion(othercollision));
+        }
     }
  
     IEnumerator StopOneMoment()
@@ -81,7 +94,7 @@ public class Zinguilini : MonoBehaviour
         DOTween.Sequence()
           .Append(transform.DOMove(transform.position + new Vector3(Random.Range(0.1f, 0.1f), Random.Range(0.1f, 0.1f), 0), 0.5f))
            .Append(transform.DOMove(posicion, 0.5f)) ;
-           
+         
         yield return new WaitForSeconds(time);
       
         stop = false;
@@ -98,5 +111,37 @@ public class Zinguilini : MonoBehaviour
         stop = false;
 
     }
+    IEnumerator OtherDirecion(Zinguilini othercollision)
+    {
+   
+        float DistanMe, OtheListan;
+        if (!stop && Positions.Length != (Position))
+        {
+            direction = transform.position - Positions[Position].position;
+            DistanMe = Vector3.Distance(transform.position, Positions[Position].position);
+            OtheListan = Vector3.Distance(othercollision.transform.position, Positions[Position].position);
+           
+        }
+        else
+        {
+            direction = transform.position - LastPositions.position;
+            DistanMe = Vector3.Distance(transform.position, LastPositions.position);
+            OtheListan = Vector3.Distance(othercollision.transform.position, LastPositions.position);
+        }
+        if (DistanMe < OtheListan)
+        {
+            othercollision.stead = -othercollision.stead;
+            yield return new WaitForSeconds(0.1f);
+            stop = true;
+            yield return new WaitForSeconds(0.5f);
+            stop = false;
+            othercollision.stead = -othercollision.stead;
+        }
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
+
+    }
+
 
 }
