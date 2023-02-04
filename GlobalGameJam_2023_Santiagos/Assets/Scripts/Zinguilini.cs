@@ -14,18 +14,21 @@ public class Zinguilini : MonoBehaviour
     public float time, stead;
     Vector3 direction;
 
+    private void Awake()
+    {
+        stead = Speed * Time.deltaTime;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        int ruta= Random.RandomRange(1,3);
+        int ruta= Random.RandomRange(1,4);
         Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition(ruta);
-        LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition();
+        LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition(ruta-1);
         ZinguiliniRb = GetComponent<Rigidbody2D>();
-        stead = Speed * Time.deltaTime;
         direction = transform.position - Positions[0].position;
         for(int i = 0; i < Positions.Length; i++)
         {
-            Positions[i].position= (Positions[i].position + new Vector3(Random.Range(-2, 2), Random.Range(-2,2), 0));
+            Positions[i].position= (Positions[i].position + new Vector3(Random.Range(-1, 1), Random.Range(-1,1), 0));
 
         }
     }
