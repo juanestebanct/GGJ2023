@@ -11,6 +11,7 @@ public class GenerationZiguilini : MonoBehaviour
     [SerializeField] private GameObject ziguilini;
     [SerializeField] private Transform initial;
     [SerializeField] private int allInstantes;
+    public Camera camera;
     private float timeSpawn;
     public float TimeReset = 0.5f;
     private void Start()
@@ -19,6 +20,17 @@ public class GenerationZiguilini : MonoBehaviour
     }
     void Update()
     {
+        RaycastHit hit;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit) && Input.GetMouseButton(0))
+        {
+            if (hit.transform.tag == "EventsGame")
+            {
+             
+
+            }
+            
+        }
         if (allInstantes>0)
         {
             timeSpawn -= Time.deltaTime;
@@ -65,4 +77,5 @@ public class GenerationZiguilini : MonoBehaviour
         Debug.Log("ziguilini");
         allInstantes--;
     }
+  
 }

@@ -36,6 +36,7 @@ public class Zinguilini : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //si hay posiciones de ir va 
         if (!stop && Positions.Length!= (Position))
         {
@@ -88,7 +89,19 @@ public class Zinguilini : MonoBehaviour
                 StartCoroutine(OtherDirecion(othercollision));
         }
     }
- 
+    public void Dead()
+    {
+        Debug.Log("murio");
+        DOTween.Sequence()
+       .Append(transform.DOScale(1.5f, 0.4f))
+       .Append(transform.DOScale(0.2f, 0.1f)
+       .OnComplete(() => explocion()));
+    }
+    public void explocion()
+    {
+       
+    }
+
     IEnumerator StopOneMoment()
     {
         stop = true;
