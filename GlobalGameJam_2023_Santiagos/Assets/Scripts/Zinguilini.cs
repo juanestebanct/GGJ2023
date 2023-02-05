@@ -17,10 +17,23 @@ public class Zinguilini : MonoBehaviour
     private Renderer render;
     bool dead=false;
     Vector3 direction;
-    [SerializeField] private GameObject terrestre;
+    [SerializeField] private GameObject terrestre, volador;
 
     private void Awake()
     {
+        System.Random random = new System.Random();
+        float rnd = random.Next(0,100);
+        if (rnd < 50)
+        {
+            terrestre.SetActive(true);
+            volador.SetActive(false);
+        }
+        else
+        {
+            terrestre.SetActive(false);
+            volador.SetActive(true);
+        }
+        
         stead = Speed * Time.deltaTime;
     }
     // Start is called before the first frame update
@@ -58,21 +71,23 @@ public class Zinguilini : MonoBehaviour
         {         
             transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead); 
             float a = Vector3.Distance(transform.position, Positions[Position].position);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+            if (Positions.Length != (Position))
+            {
+                direction = transform.position - Positions[Position].position;
+            }
+            else
+            {
+                direction = transform.position - LastPositions.position;
+            }
             if (a==0)
             {
-                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
-                transform.rotation = Quaternion.LookRotation(newDirection);
+                
                 Position++;
                 Debug.Log(Position); 
                 StartCoroutine(StopOneMoment());
-                if (Positions.Length != (Position))
-                {
-                    direction = transform.position - Positions[Position].position;
-                }
-                else
-                {
-                    direction = transform.position - LastPositions.position;
-                }
+                
                 
             }
         }
