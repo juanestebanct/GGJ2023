@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
- 
+    [SerializeField] private RootController[] level1Roots = new RootController[2];
+
+
     [SerializeField] private int currenRond;
     [SerializeField] private int[] timeRonds;
     [SerializeField] private float timeRond;
-    // Start is called before the first frame update
+
     void Start()
     {
         currenRond = 1; //inicia en ronda 1 
         timeRond = timeRonds[0];
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (currenRond)
@@ -25,7 +26,6 @@ public class LevelManager : MonoBehaviour
                 if (timeRond<0)
                 {
                     Debug.Log("acabo la ronda");
-
                 }
                break;
             case 2:
@@ -34,5 +34,10 @@ public class LevelManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    public IEnumerator Level1_RootManager()
+    {
+        yield return null;
     }
 }

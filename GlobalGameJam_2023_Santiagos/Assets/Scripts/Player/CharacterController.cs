@@ -20,52 +20,57 @@ public class CharacterController : MonoBehaviour
 
     private Vector2 previousPosition;
     private float elapsedTime;
+    private float verticalPosition;
+    private float horizontalPosition = 0;
     
 
     private void Awake()
     {
         _transform = gameObject.transform;
         rb = GetComponent<Rigidbody2D>();
+        transform.position = new Vector2(center.position.x, center.position.y);
+        verticalPosition = _transform.position.y;
+        horizontalPosition = _transform.position.x;
     }
 
     private void Update()
     {
         Move();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
+        
     }
 
     private void Move()
     {
         previousPosition = _transform.position;
-        Vector2 movement = Vector2.zero;
 
         float verticalMovement = Input.GetAxisRaw("Vertical");
-        float verticalPosition = 0;
 
-        if (verticalMovement == 0) verticalPosition = center.position.y;
-        else if (verticalMovement == 1) verticalPosition = northLimit.position.y;
-        else if (verticalMovement == -1) verticalPosition = southLimit.position.y;
+        if ((int)verticalMovement == 1) verticalPosition = northLimit.position.y;
+        else if ((int)verticalMovement == -1) verticalPosition = southLimit.position.y;
 
-        //  movement = new Vector2(_transform.position.x, );
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        float horizontalMovement = Input.GetAxisRaw("Vertical");
-        float horizontalPosition = 0;
-        if (horizontalMovement == 0)
+        if (horizontalMovement == 0) horizontalPosition = center.position.x;
+        else if ((int)horizontalMovement == 1) horizontalPosition = eastLimit.position.x;
+        else if ((int)horizontalMovement == -1) horizontalPosition = westLimit.position.x;
+
+        float xMovement = _transform.position.x;
+        float yMovement = _transform.position.y;
+        
+        if ((int)previousPosition.x == (int)center.position.x || Input.GetAxis("Horizontal") == 0)
         {
-            movement = new Vector2(Mathf.Lerp(previousPosition.x, center.position.x, Time.deltaTime * speed), _transform.position.y);
+            yMovement = Mathf.Lerp(previousPosition.y, verticalPosition, Time.deltaTime * speed);
         }
-        else if (horizontalMovement == 1)
+        if (previousPosition.y >= northLimit.position.y-0.1f || (int)previousPosition.y <= (int)southLimit.position.y+0.1f)
         {
-            movement = new Vector2(Mathf.Lerp(previousPosition.x, eastLimit.position.x, Time.deltaTime * speed), _transform.position.y);
+            xMovement = Mathf.Lerp(previousPosition.x, horizontalPosition, Time.deltaTime * speed);
         }
-        else if (horizontalMovement == -1)
-        {
-
-        }
-      //  movement = new Vector2(, );
-
-        float xMovement = Mathf.Lerp(previousPosition.x, westLimit.position.x, Time.deltaTime * speed);
-        float yMovement = Mathf.Lerp(previousPosition.y, verticalPosition, Time.deltaTime * speed);
-        transform.position = movement;
+        transform.position = new Vector2(xMovement,yMovement);
     }
     
     
