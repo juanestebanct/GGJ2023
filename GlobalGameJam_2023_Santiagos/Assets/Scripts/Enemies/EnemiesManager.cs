@@ -26,6 +26,6 @@ public class EnemiesManager : MonoBehaviour
     }
     public void HideAlert(int root)
     {
-        Alerts[root].SetActive(true);
+        Alerts[root].SetActive(false);
     }
 }

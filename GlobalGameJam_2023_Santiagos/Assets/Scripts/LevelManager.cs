@@ -56,11 +56,11 @@ public class LevelManager : MonoBehaviour
         level1Roots[0].gameObject.SetActive(true);
         HaveRootSpawned[0] = true;
         level1Roots[0].GetComponent<Animator>().SetTrigger("play");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
         level1Roots[1].gameObject.SetActive(true);
         HaveRootSpawned[1] = true;
         level1Roots[1].GetComponent<Animator>().SetTrigger("play");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(20f);
         level1Roots[2].gameObject.SetActive(true);
         HaveRootSpawned[2] = true;
         level1Roots[2].GetComponent<Animator>().SetTrigger("play");
