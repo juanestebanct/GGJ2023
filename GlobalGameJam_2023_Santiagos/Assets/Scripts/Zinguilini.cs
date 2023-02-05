@@ -16,6 +16,7 @@ public class Zinguilini : MonoBehaviour
     public float time, stead;
     private Renderer render;
     bool dead=false;
+    public GenerationZiguilini Generator;
     Vector3 direction;
     [SerializeField] private GameObject terrestre, volador;
 
@@ -41,9 +42,9 @@ public class Zinguilini : MonoBehaviour
     {
         render = GetComponent<Renderer>();
         int ruta= Random.RandomRange(1,5);
-        Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition(ruta);
-        LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition(ruta-1);
-        StarPosition= FindObjectOfType<GenerationZiguilini>().GetZinguiliniStarPosition(ruta-1);
+        Positions = Generator.GetZinguiliniPosition(ruta);
+        LastPositions= Generator.GetZinguiliniLastPosition(ruta-1);
+        StarPosition= Generator.GetZinguiliniStarPosition(ruta-1);
         ZinguiliniRb = GetComponent<Rigidbody2D>();
 
 

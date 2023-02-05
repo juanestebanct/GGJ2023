@@ -80,7 +80,8 @@ public class GenerationZiguilini : MonoBehaviour
     {
         yield return new WaitForSeconds(timeSpawn);
         timeSpawn = 5;
-        GameObject Zinguilini = (GameObject)Instantiate(ziguilini, initial.position, transform.rotation);
+        GameObject Zinguilinii = (GameObject)Instantiate(ziguilini, initial.position, transform.rotation);
+        Zinguilinii.GetComponent<Zinguilini>().Generator=this;
         Debug.Log("ziguilini");
         EnemyInstances--;
         if (EnemyInstances==0)
