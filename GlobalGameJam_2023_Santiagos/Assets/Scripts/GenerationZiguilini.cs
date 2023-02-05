@@ -20,7 +20,9 @@ public class GenerationZiguilini : MonoBehaviour
     public float TimeReset = 0.5f;
     private void Start()
     {
+        
         timeSpawn = TimeReset;
+        StartCoroutine(Restreappearance());
     }
     void Update()
     {
