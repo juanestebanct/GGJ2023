@@ -26,7 +26,7 @@ public class Zinguilini : MonoBehaviour
     void Start()
     {
         render = GetComponent<Renderer>();
-        int ruta= Random.RandomRange(1,4);
+        int ruta= Random.RandomRange(1,5);
         Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition(ruta);
         LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition(ruta-1);
         StarPosition= FindObjectOfType<GenerationZiguilini>().GetZinguiliniStarPosition(ruta-1);

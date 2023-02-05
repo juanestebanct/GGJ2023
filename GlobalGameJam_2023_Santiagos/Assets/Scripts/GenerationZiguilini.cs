@@ -8,6 +8,7 @@ public class GenerationZiguilini : MonoBehaviour
     [SerializeField] private Transform[] PositionsZinguilini1;
     [SerializeField] private Transform[] PositionsZinguilini2;
     [SerializeField] private Transform[] PositionsZinguilini3;
+    [SerializeField] private Transform[] PositionsZinguilini4;
     [SerializeField] private Transform[] PositionsStar;
     [SerializeField] private Transform[] LastPosition;
     [SerializeField] private GameObject ziguilini;
@@ -65,6 +66,8 @@ public class GenerationZiguilini : MonoBehaviour
             case 3:
                 return PositionsZinguilini3;
                 break;
+            case 4:
+                return PositionsZinguilini4;
             default:
                 return PositionsZinguilini1;
                 break;
