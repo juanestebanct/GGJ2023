@@ -102,27 +102,34 @@ public class Zinguilini : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Root")
+        if (col.tag == "Root" && !dead)
         {
             Debug.Log("rama choco");
         }
-        
-       
+ 
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayerAtack" )
+        {
+            Dead();
+        }
     }
     public void Dead()
     {
+        dead = true;
         Debug.Log("murio");
         particle.Play();
         DOTween.Sequence()
        .Append(transform.DOScale(1.5f, 0.3f))
-       .Append(transform.DOScale(0.2f, 0.08f)
+       .Append(transform.DOScale(0.2f, 0.1f)
        .OnComplete(() => explocion()));
     }
     public void explocion()
     {
         render.enabled = enabled;
-        gameObject.SetActive(false);
-        //Destroy(gameObject, 0.4f);
+        
+        Destroy(gameObject, 0.5f);
     }
 
     IEnumerator StopOneMoment()

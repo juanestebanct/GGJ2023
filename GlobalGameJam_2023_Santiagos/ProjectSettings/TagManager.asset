@@ -8,6 +8,7 @@ TagManager:
   - Camera_02
   - Zinguilini
   - Root
+  - PlayerAtack
   layers:
   - Default
   - TransparentFX

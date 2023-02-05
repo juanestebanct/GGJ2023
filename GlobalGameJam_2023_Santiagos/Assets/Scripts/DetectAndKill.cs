@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class DetectAndKill : MonoBehaviour
 {
-    public Collider2D[] arrayOverlap;
-    public LayerMask Enemy;
-    public float range;
+
+    public GameObject Object;
+   
     // Start is called before the first frame update
     void Start()
     {
-
+        Object.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
     {
-
-
-        Gizmos.DrawSphere(transform.position, range);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        arrayOverlap = Physics2D.OverlapCircleAll(transform.position, range, Enemy);
+
         if (collision.gameObject.tag == "Player" && Input.GetKeyDown("space"))
         {
-            foreach (Collider2D col in arrayOverlap)
-            {
-                col.gameObject.GetComponent<Zinguilini>().Dead();
-             
-            }
+            StartCoroutine(Activation());
         }
+    }
+    IEnumerator Activation()
+    {
+        
+        Object.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+        Object.SetActive(false);
     }
     private void DesTroyEnemy()
     {
