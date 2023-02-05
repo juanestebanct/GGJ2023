@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
@@ -197,11 +196,11 @@ public class LevelManager : MonoBehaviour
         levelEnded = true;
         if (completedLevel == 1)
         {
-            SceneManager.LoadScene("Level 1 Outro");
+            SceneManager.LoadScene("Level 2 Outro");
         }
         else if (completedLevel == 2)
         {
-            SceneManager.LoadScene("Level 3 Intro");
+            SceneManager.LoadScene("Credits");
         }
         else if (completedLevel == 3)
         {
