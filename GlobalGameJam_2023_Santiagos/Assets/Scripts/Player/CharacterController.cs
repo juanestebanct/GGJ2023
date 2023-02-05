@@ -22,6 +22,8 @@ public class CharacterController : MonoBehaviour
     private float elapsedTime;
     private float verticalPosition;
     private float horizontalPosition = 0;
+
+    [SerializeField] private Animator _animator;
     
 
     private void Awake()
@@ -41,7 +43,18 @@ public class CharacterController : MonoBehaviour
 
     private void Shoot()
     {
-        
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            _animator.SetTrigger("Attack");
+            StartCoroutine(ShootAnimation());
+        }
+    }
+
+    private IEnumerator ShootAnimation()
+    {
+        _animator.SetBool("IsAttacking", true);
+        yield return new WaitForSeconds(1f);
+        _animator.SetBool("IsAttacking", false);
     }
 
     private void Move()
@@ -54,6 +67,9 @@ public class CharacterController : MonoBehaviour
         else if ((int)verticalMovement == -1) verticalPosition = southLimit.position.y;
 
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
+        
+        _animator.SetFloat("H_Mov", Input.GetAxis("Horizontal"));
+        _animator.SetFloat("V_Mov", Input.GetAxis("Vertical"));
 
         if (horizontalMovement == 0) horizontalPosition = center.position.x;
         else if ((int)horizontalMovement == 1) horizontalPosition = eastLimit.position.x;

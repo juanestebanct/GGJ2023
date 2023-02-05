@@ -17,6 +17,7 @@ public class Zinguilini : MonoBehaviour
     private Renderer render;
     bool dead=false;
     Vector3 direction;
+    [SerializeField] private GameObject terrestre;
 
     private void Awake()
     {
@@ -80,7 +81,7 @@ public class Zinguilini : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, LastPositions.position, stead);
             float a = Vector3.Distance(transform.position, LastPositions.position);
-            if (a == 0)
+            if (a <= 0.1f)
             {
                 StartCoroutine(ChageLoop());
             }

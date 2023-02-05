@@ -13,47 +13,38 @@ public class GenerationZiguilini : MonoBehaviour
     [SerializeField] private Transform[] LastPosition;
     [SerializeField] private GameObject ziguilini;
     [SerializeField] private Transform initial;
-    [SerializeField] private int allInstantes;
-    public bool endRonds=false;
-    public int[] round;
+    [SerializeField] public int EnemyInstances;
+    public bool CanSpawn;
     private float timeSpawn;
     public float TimeReset = 0.5f;
     private void Start()
     {
-        
+        CanSpawn = false;
         timeSpawn = TimeReset;
         StartCoroutine(Restreappearance());
     }
     void Update()
     {
-        //si es verdadero deja de aparecer enemigos 
-        if (!endRonds)
+        //si es falso dejan de aparecer enemigos 
+        if (CanSpawn)
         {
-
-            if (allInstantes > 0)
+            if (EnemyInstances > 0)
             {
                 timeSpawn -= Time.deltaTime;
-                if (timeSpawn > 0)
-                {
-                  
-                }
-                else
+                if (timeSpawn <= 0)
                 {
                     StartCoroutine(spawn());
                     timeSpawn = 0.5f;
                 }
-
             }
-           
         }
-       
     }
 
     IEnumerator Restreappearance()
     {
         yield return new WaitForSeconds(Random.Range(20, 30));
         Debug.Log("amenaza re creada ");
-        allInstantes = 20;
+        EnemyInstances = 20;
     }
     public Transform[] GetZinguiliniPosition(int Ruta)
     {
@@ -91,8 +82,8 @@ public class GenerationZiguilini : MonoBehaviour
         timeSpawn = 5;
         GameObject Zinguilini = (GameObject)Instantiate(ziguilini, initial.position, transform.rotation);
         Debug.Log("ziguilini");
-        allInstantes--;
-        if (allInstantes==0)
+        EnemyInstances--;
+        if (EnemyInstances==0)
         {
             Debug.Log("Re creando las amenzas ");
             StartCoroutine(Restreappearance());

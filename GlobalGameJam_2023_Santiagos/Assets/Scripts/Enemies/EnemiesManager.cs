@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemiesManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static EnemiesManager Instance;
+
+    public List<GameObject> Alerts = new List<GameObject>();
+
+    private void Awake()
     {
-        
+        if (Instance == null) Instance = this;
+        else Destroy(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        foreach (var alert in Alerts) alert.SetActive(false);
+    }
+
+    public void ShowAlert(int root)
+    {
+        Alerts[root].SetActive(true);
+    }
+    public void HideAlert(int root)
+    {
+        Alerts[root].SetActive(true);
     }
 }

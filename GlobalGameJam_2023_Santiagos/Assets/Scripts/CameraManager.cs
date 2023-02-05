@@ -27,8 +27,10 @@ public class CameraManager : MonoBehaviour
     public void ChangeCamera(int camera)
     {
         foreach (var cam in cameras) cam.SetActive(false);
+        foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
         
         cameras[camera].SetActive(true);
+        fiumbotControllers[camera].SetActive(true);
 
         minimap.SetActive(false);
         minimapCamera.SetActive(false);

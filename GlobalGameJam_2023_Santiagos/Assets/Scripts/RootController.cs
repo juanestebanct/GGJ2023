@@ -8,11 +8,14 @@ public class RootController : MonoBehaviour
     private CameraManager _cameraManager;
     [SerializeField] private int _rootScenario = 0;
     [SerializeField] private GameObject cameraButton;
+    [SerializeField] private GameObject alert;
 
     private void Start()
     {
         _cameraManager = CameraManager.Instance;
         _cameraManager.RootButtons.Add(cameraButton);
+        EnemiesManager.Instance.Alerts.Add(alert);
+        alert.SetActive(false);
     }
 
     public void SetCamera()
@@ -26,6 +29,7 @@ public class RootController : MonoBehaviour
         
         cameraButton.SetActive(false);
     }
+    
 
 
 }
