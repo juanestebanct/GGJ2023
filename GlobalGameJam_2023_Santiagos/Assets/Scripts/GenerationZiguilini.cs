@@ -8,6 +8,7 @@ public class GenerationZiguilini : MonoBehaviour
     [SerializeField] private Transform[] PositionsZinguilini1;
     [SerializeField] private Transform[] PositionsZinguilini2;
     [SerializeField] private Transform[] PositionsZinguilini3;
+    [SerializeField] private Transform[] PositionsStar;
     [SerializeField] private Transform[] LastPosition;
     [SerializeField] private GameObject ziguilini;
     [SerializeField] private Transform initial;
@@ -72,6 +73,11 @@ public class GenerationZiguilini : MonoBehaviour
     public Transform GetZinguiliniLastPosition(int Ruta)
     {     
         return LastPosition[Ruta];
+
+    }
+    public Transform GetZinguiliniStarPosition(int Ruta)
+    {
+        return PositionsStar[Ruta];
 
     }
     IEnumerator spawn()

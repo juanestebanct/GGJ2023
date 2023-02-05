@@ -5,8 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private RootController[] level1Roots = new RootController[2];
-
-
+    [SerializeField] private GenerationZiguilini[] COntrolerZinguilini;
     [SerializeField] private int currenRond;
     [SerializeField] private int[] timeRonds;
     [SerializeField] private float timeRond;
@@ -22,10 +21,12 @@ public class LevelManager : MonoBehaviour
         switch (currenRond)
         {
             case 1:
-                timeRond = -Time.deltaTime;
+                timeRond += -Time.deltaTime;
                 if (timeRond<0)
                 {
+
                     Debug.Log("acabo la ronda");
+
                 }
                break;
             case 2:
