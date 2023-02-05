@@ -17,6 +17,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform southLimit;
     [SerializeField] private Transform eastLimit;
     [SerializeField] private Transform westLimit;
+    [SerializeField] private AudioSource shoot;
     private int indexParticule;
     private Vector2 previousPosition;
     private float elapsedTime;
@@ -43,11 +44,13 @@ public class CharacterController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1))
         {
             particula[indexParticule].Play();
+            shoot.Play();
             if (_transform.position.x != 0)
             {
+               
                 _animator.SetTrigger("Attack");
                 
                 StartCoroutine(ShootAnimation());
