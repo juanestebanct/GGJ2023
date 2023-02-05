@@ -474,7 +474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Z\xFAkutu \nha muerto :C"
+  m_text: "Z\xFAkutu \nha muerto"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d7d8f8c44abddc4e8ed9e50a5e4acae, type: 2}
   m_sharedMaterial: {fileID: -24083695032934047, guid: 7d7d8f8c44abddc4e8ed9e50a5e4acae, type: 2}
