@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Zinguilini : MonoBehaviour
 {
+    [SerializeField] private Transform StarPosition;
     [SerializeField] private Transform [] Positions;
     [SerializeField] private Rigidbody2D ZinguiliniRb;
     [SerializeField] private float Speed= 0.1f;
@@ -28,8 +29,11 @@ public class Zinguilini : MonoBehaviour
         int ruta= Random.RandomRange(1,4);
         Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition(ruta);
         LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition(ruta-1);
+        StarPosition= FindObjectOfType<GenerationZiguilini>().GetZinguiliniStarPosition(ruta-1);
         ZinguiliniRb = GetComponent<Rigidbody2D>();
 
+
+        transform.position = StarPosition.position;
         direction = transform.position - Positions[0].position;
         for(int i = 0; i < Positions.Length; i++)
         {
@@ -41,6 +45,7 @@ public class Zinguilini : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!dead && Input.GetKeyDown("space"))
         {
             dead = true;
@@ -49,12 +54,8 @@ public class Zinguilini : MonoBehaviour
         }
         //si hay posiciones de ir va 
         if (!stop && Positions.Length!= (Position))
-        {
-           
-           
-            transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead);
-
-            
+        {         
+            transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead); 
             float a = Vector3.Distance(transform.position, Positions[Position].position);
             if (a==0)
             {
@@ -63,7 +64,6 @@ public class Zinguilini : MonoBehaviour
                 Position++;
                 Debug.Log(Position); 
                 StartCoroutine(StopOneMoment());
-              
                 if (Positions.Length != (Position))
                 {
                     direction = transform.position - Positions[Position].position;
@@ -98,6 +98,16 @@ public class Zinguilini : MonoBehaviour
             Zinguilini othercollision = collision.gameObject.GetComponent<Zinguilini>();
                 StartCoroutine(OtherDirecion(othercollision));
         }
+       
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Root")
+        {
+            Debug.Log("rama choco");
+        }
+        
+       
     }
     public void Dead()
     {
