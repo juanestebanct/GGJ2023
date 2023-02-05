@@ -50,7 +50,7 @@ public class Zinguilini : MonoBehaviour
         {
             dead = true;
             Debug.Log("murio");
-            Dead();
+          //  Dead();
         }
         //si hay posiciones de ir va 
         if (!stop && Positions.Length!= (Position))

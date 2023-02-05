@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1101678980801592481}
   - component: {fileID: 1101678980801592495}
   - component: {fileID: 1101678980801592482}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zinguilini
   m_TagString: Zinguilini
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3256e31ad944694a819b5561ed0fe6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StarPosition: {fileID: 0}
   Positions:
   - {fileID: 0}
   - {fileID: 0}
@@ -169,7 +170,7 @@ GameObject:
   - component: {fileID: 553812699767775171}
   - component: {fileID: 4082137570608892762}
   - component: {fileID: 8643139209097882731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BigParticule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5041,7 +5042,7 @@ GameObject:
   - component: {fileID: 4929666881376316331}
   - component: {fileID: 3501956041031216990}
   - component: {fileID: 2116123177284789986}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: flass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9911,7 +9912,7 @@ GameObject:
   - component: {fileID: 2511446646551460347}
   - component: {fileID: 2111698058302487904}
   - component: {fileID: 8047955488732720268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
