@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GenerationZiguilini : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class GenerationZiguilini : MonoBehaviour
     [SerializeField] private GameObject ziguilini;
     [SerializeField] private Transform initial;
     [SerializeField] private int allInstantes;
-    public Camera camera;
+    public bool endRonds=false;
+    public int[] round;
     private float timeSpawn;
     public float TimeReset = 0.5f;
     private void Start()
@@ -20,32 +22,34 @@ public class GenerationZiguilini : MonoBehaviour
     }
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit) && Input.GetMouseButton(0))
+        //si es verdadero deja de aparecer enemigos 
+        if (!endRonds)
         {
-            if (hit.transform.tag == "EventsGame")
+
+            if (allInstantes > 0)
             {
-             
+                timeSpawn -= Time.deltaTime;
+                if (timeSpawn > 0)
+                {
+                  
+                }
+                else
+                {
+                    StartCoroutine(spawn());
+                    timeSpawn = 0.5f;
+                }
 
             }
-            
-        }
-        if (allInstantes>0)
-        {
-            timeSpawn -= Time.deltaTime;
-            if (timeSpawn>0)
-            {
-              
-            }
-            else
-            {
-              StartCoroutine(spawn());
-                timeSpawn=0.5f;
-            }
-          
+           
         }
        
+    }
+
+    IEnumerator Restreappearance()
+    {
+        yield return new WaitForSeconds(Random.Range(20, 30));
+        Debug.Log("amenaza re creada ");
+        allInstantes = 20;
     }
     public Transform[] GetZinguiliniPosition(int Ruta)
     {
@@ -68,14 +72,20 @@ public class GenerationZiguilini : MonoBehaviour
     public Transform GetZinguiliniLastPosition(int Ruta)
     {     
         return LastPosition[Ruta];
+
     }
     IEnumerator spawn()
     {
-        yield return new WaitForSeconds(timeSpawn );
+        yield return new WaitForSeconds(timeSpawn);
         timeSpawn = 5;
         GameObject Zinguilini = (GameObject)Instantiate(ziguilini, initial.position, transform.rotation);
         Debug.Log("ziguilini");
         allInstantes--;
+        if (allInstantes==0)
+        {
+            Debug.Log("Re creando las amenzas ");
+            StartCoroutine(Restreappearance());
+        }
     }
   
 }

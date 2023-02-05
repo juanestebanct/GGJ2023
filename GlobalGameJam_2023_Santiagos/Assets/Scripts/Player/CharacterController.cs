@@ -37,16 +37,16 @@ public class CharacterController : MonoBehaviour
     {
         previousPosition = _transform.position;
         Vector2 movement = Vector2.zero;
-        
+
         float verticalMovement = Input.GetAxisRaw("Vertical");
         float verticalPosition = 0;
-        
+
         if (verticalMovement == 0) verticalPosition = center.position.y;
         else if (verticalMovement == 1) verticalPosition = northLimit.position.y;
         else if (verticalMovement == -1) verticalPosition = southLimit.position.y;
 
-        movement = new Vector2(_transform.position.x, );
-        
+        //  movement = new Vector2(_transform.position.x, );
+
         float horizontalMovement = Input.GetAxisRaw("Vertical");
         float horizontalPosition = 0;
         if (horizontalMovement == 0)
@@ -59,14 +59,14 @@ public class CharacterController : MonoBehaviour
         }
         else if (horizontalMovement == -1)
         {
-            
+
         }
-        movement = new Vector2(, 
-            );
+      //  movement = new Vector2(, );
 
         float xMovement = Mathf.Lerp(previousPosition.x, westLimit.position.x, Time.deltaTime * speed);
         float yMovement = Mathf.Lerp(previousPosition.y, verticalPosition, Time.deltaTime * speed);
         transform.position = movement;
     }
+    
     
 }

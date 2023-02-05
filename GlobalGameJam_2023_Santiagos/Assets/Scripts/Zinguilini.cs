@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine;
+
 public class Zinguilini : MonoBehaviour
 {
     [SerializeField] private Transform [] Positions;
@@ -11,7 +11,10 @@ public class Zinguilini : MonoBehaviour
     [SerializeField] private Transform LastPositions;
     [SerializeField] private int Position;
     [SerializeField] private bool stop;
+    [SerializeField] private ParticleSystem particle;
     public float time, stead;
+    private Renderer render;
+    bool dead=false;
     Vector3 direction;
 
     private void Awake()
@@ -21,14 +24,16 @@ public class Zinguilini : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        render = GetComponent<Renderer>();
         int ruta= Random.RandomRange(1,4);
         Positions = FindObjectOfType<GenerationZiguilini>().GetZinguiliniPosition(ruta);
         LastPositions= FindObjectOfType<GenerationZiguilini>().GetZinguiliniLastPosition(ruta-1);
         ZinguiliniRb = GetComponent<Rigidbody2D>();
+
         direction = transform.position - Positions[0].position;
         for(int i = 0; i < Positions.Length; i++)
         {
-            Positions[i].position= (Positions[i].position + new Vector3(Random.Range(-1, 1), Random.Range(-1,1), 0));
+         //   Positions[i].position=   new Vector3(Random.Range(-1, 1)+, Random.Range(-1,1), 0);
 
         }
     }
@@ -36,7 +41,12 @@ public class Zinguilini : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!dead && Input.GetKeyDown("space"))
+        {
+            dead = true;
+            Debug.Log("murio");
+            Dead();
+        }
         //si hay posiciones de ir va 
         if (!stop && Positions.Length!= (Position))
         {
@@ -92,14 +102,17 @@ public class Zinguilini : MonoBehaviour
     public void Dead()
     {
         Debug.Log("murio");
+        particle.Play();
         DOTween.Sequence()
-       .Append(transform.DOScale(1.5f, 0.4f))
-       .Append(transform.DOScale(0.2f, 0.1f)
+       .Append(transform.DOScale(1.5f, 0.3f))
+       .Append(transform.DOScale(0.2f, 0.08f)
        .OnComplete(() => explocion()));
     }
     public void explocion()
     {
-       
+        render.enabled = enabled;
+
+        Destroy(gameObject, 0.4f);
     }
 
     IEnumerator StopOneMoment()
@@ -157,6 +170,10 @@ public class Zinguilini : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(newDirection);
 
 
+    }
+    private void OnDisable()
+    {
+        DOTween.KillAll(gameObject);
     }
 
 
