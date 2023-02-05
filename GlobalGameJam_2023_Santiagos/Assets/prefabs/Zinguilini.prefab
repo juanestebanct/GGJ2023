@@ -107,13 +107,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ZinguiliniRb: {fileID: 0}
-  Speed: 2
+  Speed: 0.5
   LastPositions: {fileID: 0}
   Position: 0
   stop: 0
   particle: {fileID: 4082137570608892762}
   time: 2
   stead: 0
+  Generator: {fileID: 0}
   terrestre: {fileID: 8878902808902547146}
   volador: {fileID: 2603925160321193195}
 --- !u!50 &1101678980801592482
@@ -14832,6 +14833,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5900572701946122095, guid: b47060148403b9c42927b770f9f93226, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b47060148403b9c42927b770f9f93226, type: 3}
       propertyPath: m_Name
       value: Zinguilini_Volador_Idle_Animation
@@ -14942,6 +14947,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 78a8b157fc73ca149ae3ec802785bdd3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -6434301378086035483, guid: 78a8b157fc73ca149ae3ec802785bdd3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 78a8b157fc73ca149ae3ec802785bdd3, type: 3}
       propertyPath: m_Name

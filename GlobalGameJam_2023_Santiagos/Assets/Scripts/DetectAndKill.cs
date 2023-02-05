@@ -19,9 +19,12 @@ public class DetectAndKill : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.X))
+        if (collision.gameObject.tag == "Player")
         {
-            StartCoroutine(Activation());
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(Activation());
+            }
         }
     }
     IEnumerator Activation()

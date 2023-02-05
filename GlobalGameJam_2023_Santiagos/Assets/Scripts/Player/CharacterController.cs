@@ -43,10 +43,13 @@ public class CharacterController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
         {
-            _animator.SetTrigger("Attack");
-            StartCoroutine(ShootAnimation());
+            if (_transform.position.x != 0)
+            {
+                _animator.SetTrigger("Attack");
+                StartCoroutine(ShootAnimation());
+            }
         }
     }
 

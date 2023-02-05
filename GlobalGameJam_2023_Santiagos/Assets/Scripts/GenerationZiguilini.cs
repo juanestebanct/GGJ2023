@@ -21,7 +21,7 @@ public class GenerationZiguilini : MonoBehaviour
     {
         CanSpawn = false;
         timeSpawn = TimeReset;
-        StartCoroutine(Restreappearance());
+        //StartCoroutine(Restreappearance());
     }
     void Update()
     {
@@ -34,7 +34,7 @@ public class GenerationZiguilini : MonoBehaviour
                 if (timeSpawn <= 0)
                 {
                     StartCoroutine(spawn());
-                    timeSpawn = 0.5f;
+                    timeSpawn = 1;
                 }
             }
         }
@@ -84,11 +84,11 @@ public class GenerationZiguilini : MonoBehaviour
         Zinguilinii.GetComponent<Zinguilini>().Generator=this;
         Debug.Log("ziguilini");
         EnemyInstances--;
-        if (EnemyInstances==0)
-        {
-            Debug.Log("Re creando las amenzas ");
-            StartCoroutine(Restreappearance());
-        }
+        // if (EnemyInstances==0)
+        // {
+        //     Debug.Log("Re creando las amenzas ");
+        //     StartCoroutine(Restreappearance());
+        // }
     }
   
 }

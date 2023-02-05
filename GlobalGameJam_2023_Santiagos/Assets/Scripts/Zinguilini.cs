@@ -127,8 +127,9 @@ public class Zinguilini : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerAtack" )
+        if (collision.tag == "PlayerAtack" && !dead)
         {
+            dead = true;
             Dead();
         }
     }
@@ -170,7 +171,7 @@ public class Zinguilini : MonoBehaviour
         Vector3 posicion = transform.position;
         Position--;
         yield return new WaitForSeconds(time/2);
-
+        Debug.Log("GAME OVER");
         stop = false;
 
     }
