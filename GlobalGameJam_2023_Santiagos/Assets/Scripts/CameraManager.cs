@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject openMinimapBtn;
     [SerializeField] private GameObject[] cameras = new GameObject[6];
     [SerializeField] private GameObject[] fiumbotControllers = new GameObject[6];
+    [SerializeField] private GameObject rootParent;
 
     public List<GameObject> RootButtons = new List<GameObject>();
 
@@ -26,6 +27,7 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCamera(int camera)
     {
+        rootParent.SetActive(false);
         foreach (var cam in cameras) cam.SetActive(false);
         foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
         foreach (GameObject button in RootButtons) button.SetActive(false);
@@ -40,6 +42,7 @@ public class CameraManager : MonoBehaviour
 
     public void OpenMinimap()
     {
+        rootParent.SetActive(true);
         minimap.SetActive(true);
         minimapCamera.SetActive(true);
         openMinimapBtn.SetActive(false);

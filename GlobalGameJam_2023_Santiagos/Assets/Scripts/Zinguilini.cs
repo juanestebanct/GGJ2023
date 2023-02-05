@@ -172,6 +172,7 @@ public class Zinguilini : MonoBehaviour
         Position--;
         yield return new WaitForSeconds(time/2);
         Debug.Log("GAME OVER");
+        LevelManager.Instance.Lose();
         stop = false;
 
     }

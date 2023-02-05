@@ -8,16 +8,16 @@ public class CharacterController : MonoBehaviour
 {
     private Transform _transform;
     private Rigidbody2D rb;
-
+    public ParticleSystem[] particula;
     [SerializeField] private float speed = 1f;
-    
+    public Transform[] particule;
     [Header("Limits")]
     [SerializeField] private Transform northLimit;
     [SerializeField] private Transform center;
     [SerializeField] private Transform southLimit;
     [SerializeField] private Transform eastLimit;
     [SerializeField] private Transform westLimit;
-
+    private int indexParticule;
     private Vector2 previousPosition;
     private float elapsedTime;
     private float verticalPosition;
@@ -45,9 +45,11 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
         {
+            particula[indexParticule].Play();
             if (_transform.position.x != 0)
             {
                 _animator.SetTrigger("Attack");
+                
                 StartCoroutine(ShootAnimation());
             }
         }
@@ -75,18 +77,30 @@ public class CharacterController : MonoBehaviour
         _animator.SetFloat("V_Mov", Input.GetAxis("Vertical"));
 
         if (horizontalMovement == 0) horizontalPosition = center.position.x;
-        else if ((int)horizontalMovement == 1) horizontalPosition = eastLimit.position.x;
-        else if ((int)horizontalMovement == -1) horizontalPosition = westLimit.position.x;
+        else if ((int)horizontalMovement == 1)
+        {
+            particula[0].transform.position = particule[0].position;
+            indexParticule = 0;
+            horizontalPosition = eastLimit.position.x;
+        }
+        else if ((int)horizontalMovement == -1)
+        {
+            particula[1].transform.position = particule[1].position;
+            indexParticule = 1;
+            horizontalPosition = westLimit.position.x;
+        }
 
         float xMovement = _transform.position.x;
         float yMovement = _transform.position.y;
         
         if ((int)previousPosition.x == (int)center.position.x || Input.GetAxis("Horizontal") == 0)
         {
+          
             yMovement = Mathf.Lerp(previousPosition.y, verticalPosition, Time.deltaTime * speed);
         }
         if (previousPosition.y >= northLimit.position.y-0.1f || (int)previousPosition.y <= (int)southLimit.position.y+0.1f)
         {
+         
             xMovement = Mathf.Lerp(previousPosition.x, horizontalPosition, Time.deltaTime * speed);
         }
         transform.position = new Vector2(xMovement,yMovement);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class LevelManager : MonoBehaviour
@@ -15,11 +16,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool[] HaveRootSpawned = new bool[5];
     private float timer;
     private bool levelEnded;
+
+    [SerializeField] private GameObject loseScreen;
     
     [SerializeField] private GenerationZiguilini[] _generationZiguilinis = new GenerationZiguilini[6];
 
     private void Awake()
     {
+        loseScreen.SetActive(false);
         if (Instance == null) Instance = this;
         else Destroy(this);
         for (int i = 0; i < HaveRootSpawned.Length; i++) HaveRootSpawned[i] = false;
@@ -56,11 +60,11 @@ public class LevelManager : MonoBehaviour
         level1Roots[0].gameObject.SetActive(true);
         HaveRootSpawned[0] = true;
         level1Roots[0].GetComponent<Animator>().SetTrigger("play");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(10f);
         level1Roots[1].gameObject.SetActive(true);
         HaveRootSpawned[1] = true;
         level1Roots[1].GetComponent<Animator>().SetTrigger("play");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(20f);
         level1Roots[2].gameObject.SetActive(true);
         HaveRootSpawned[2] = true;
         level1Roots[2].GetComponent<Animator>().SetTrigger("play");
@@ -113,5 +117,19 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Completado el nivel " + completedLevel);
         levelEnded = true;
+    }
+
+    public void Lose()
+    {
+        loseScreen.SetActive(true);
+        foreach (var VARIABLE in level1Roots)
+        {
+            VARIABLE.gameObject.SetActive(false);
+        }
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
