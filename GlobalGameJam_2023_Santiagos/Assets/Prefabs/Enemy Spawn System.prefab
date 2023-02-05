@@ -1083,6 +1083,10 @@ PrefabInstance:
       propertyPath: range
       value: 5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7234750521427350152, guid: a86adfcf1b0a6ef4bb00dcc633d41c94, type: 3}
+      propertyPath: Enemy.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 7234750521427350153, guid: a86adfcf1b0a6ef4bb00dcc633d41c94, type: 3}
       propertyPath: m_RootOrder
       value: 1

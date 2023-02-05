@@ -207,6 +207,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -2.00004
       objectReference: {fileID: 0}
+    - target: {fileID: 1211784637005940966, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211784637153847767, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211784637844595651, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1253213442963135238, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -221,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1253213442963135238, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.50009
+      value: -0.55827856
       objectReference: {fileID: 0}
     - target: {fileID: 1253213442963135238, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -255,7 +267,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Spawn System
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8410438158844369634, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5288023373888184315, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 96d5da1e1204476488fb23ecbd71b45c, type: 3}
 --- !u!4 &143108158 stripped
 Transform:
@@ -895,10 +912,6 @@ PrefabInstance:
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_Name
       value: Fiumbot Controller (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
@@ -1659,6 +1672,10 @@ PrefabInstance:
       value: Fiumbot Controller (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -1723,6 +1740,10 @@ PrefabInstance:
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_Name
       value: Fiumbot Controller (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_TagString
@@ -3419,6 +3440,10 @@ PrefabInstance:
       value: Fiumbot Controller (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -3819,6 +3844,10 @@ PrefabInstance:
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_Name
       value: Fiumbot Controller (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_TagString
@@ -5791,6 +5820,10 @@ PrefabInstance:
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_Name
       value: Fiumbot Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987085243557853123, guid: 09e5ad452f9a65447b3e098f37d08531, type: 3}
       propertyPath: m_TagString

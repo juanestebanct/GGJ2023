@@ -121,8 +121,8 @@ public class Zinguilini : MonoBehaviour
     public void explocion()
     {
         render.enabled = enabled;
-
-        Destroy(gameObject, 0.4f);
+        gameObject.SetActive(false);
+        //Destroy(gameObject, 0.4f);
     }
 
     IEnumerator StopOneMoment()
