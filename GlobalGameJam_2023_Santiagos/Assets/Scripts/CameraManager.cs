@@ -28,6 +28,7 @@ public class CameraManager : MonoBehaviour
     {
         foreach (var cam in cameras) cam.SetActive(false);
         foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
+        foreach (GameObject button in RootButtons) button.SetActive(false);
         
         cameras[camera].SetActive(true);
         fiumbotControllers[camera].SetActive(true);
