@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator Level1_RootManager()
     {
+        level1Roots[0].gameObject.SetActive(true);
         yield return null;
     }
 }
