@@ -26,17 +26,13 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCamera(int camera)
     {
-        if (camera == 1)
-        {
-            cameras[0].SetActive(false); cameras[1].SetActive(true); minimap.SetActive(false);
-            minimapCamera.SetActive(false); openMinimapBtn.SetActive(true);
-        }
+        foreach (var cam in cameras) cam.SetActive(false);
+        
+        cameras[camera].SetActive(true);
 
-        if (camera == 0)
-        {
-            cameras[1].SetActive(false); cameras[0].SetActive(true); minimap.SetActive(false);
-            minimapCamera.SetActive(false); openMinimapBtn.SetActive(true);
-        }
+        minimap.SetActive(false);
+        minimapCamera.SetActive(false);
+        openMinimapBtn.SetActive(true);
     }
 
     public void OpenMinimap()
