@@ -19,10 +19,10 @@ public class RootController : MonoBehaviour
     {
         if (_rootScenario == 0) _cameraManager.ChangeCamera(0);
         else if (_rootScenario == 1) _cameraManager.ChangeCamera(1);
-        else if (_rootScenario == 1) _cameraManager.ChangeCamera(2);
-        else if (_rootScenario == 1) _cameraManager.ChangeCamera(3);
-        else if (_rootScenario == 1) _cameraManager.ChangeCamera(4);
-        else if (_rootScenario == 1) _cameraManager.ChangeCamera(5);
+        else if (_rootScenario == 2) _cameraManager.ChangeCamera(2);
+        else if (_rootScenario == 3) _cameraManager.ChangeCamera(3);
+        else if (_rootScenario == 4) _cameraManager.ChangeCamera(4);
+        else if (_rootScenario == 5) _cameraManager.ChangeCamera(5);
         
         cameraButton.SetActive(false);
     }
