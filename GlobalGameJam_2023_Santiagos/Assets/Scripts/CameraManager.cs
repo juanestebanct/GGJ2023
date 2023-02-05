@@ -11,7 +11,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject minimap;
     [SerializeField] private GameObject minimapCamera;
     [SerializeField] private GameObject openMinimapBtn;
-    [SerializeField] private GameObject[] cameras = new GameObject[2];
+    [SerializeField] private GameObject[] cameras = new GameObject[6];
+    [SerializeField] private GameObject[] fiumbotControllers = new GameObject[6];
 
     public List<GameObject> RootButtons = new List<GameObject>();
 

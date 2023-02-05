@@ -6,26 +6,26 @@ using UnityEngine;
 public class RootController : MonoBehaviour
 {
     private CameraManager _cameraManager;
-    [SerializeField] private RootType _rootType = RootType.Left;
+    [SerializeField] private int _rootScenario = 0;
     [SerializeField] private GameObject cameraButton;
 
     private void Start()
     {
         _cameraManager = CameraManager.Instance;
-        CameraManager.Instance.RootButtons.Add(cameraButton);
+        _cameraManager.RootButtons.Add(cameraButton);
     }
 
     public void SetCamera()
     {
-        if (_rootType == RootType.Left) _cameraManager.ChangeCamera(0);
-        else if (_rootType == RootType.Right) _cameraManager.ChangeCamera(1);
+        if (_rootScenario == 0) _cameraManager.ChangeCamera(0);
+        else if (_rootScenario == 1) _cameraManager.ChangeCamera(1);
+        else if (_rootScenario == 1) _cameraManager.ChangeCamera(2);
+        else if (_rootScenario == 1) _cameraManager.ChangeCamera(3);
+        else if (_rootScenario == 1) _cameraManager.ChangeCamera(4);
+        else if (_rootScenario == 1) _cameraManager.ChangeCamera(5);
+        
         cameraButton.SetActive(false);
     }
 
 
-}
-
-public enum RootType
-{
-    Left = 0, Right = 1
 }
