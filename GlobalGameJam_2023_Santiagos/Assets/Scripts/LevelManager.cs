@@ -55,19 +55,21 @@ public class LevelManager : MonoBehaviour
         levelTime = 60;
         timer = 0;
         foreach (var root in level1Roots) root.gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
+        
         level1Roots[0].gameObject.SetActive(true);
         HaveRootSpawned[0] = true;
+        StartCoroutine(GenerateEnemies());
+        yield return new WaitForSeconds(2f);
         level1Roots[0].GetComponent<Animator>().SetTrigger("play");
         yield return new WaitForSeconds(10f);
         level1Roots[1].gameObject.SetActive(true);
         HaveRootSpawned[1] = true;
         level1Roots[1].GetComponent<Animator>().SetTrigger("play");
+        StartCoroutine(GenerateEnemies());
         yield return new WaitForSeconds(20f);
         level1Roots[2].gameObject.SetActive(true);
         HaveRootSpawned[2] = true;
         level1Roots[2].GetComponent<Animator>().SetTrigger("play");
-        
         StartCoroutine(GenerateEnemies());
     }
     
@@ -80,19 +82,21 @@ public class LevelManager : MonoBehaviour
         level2Roots[0].gameObject.SetActive(true);
         HaveRootSpawned[0] = true;
         level2Roots[0].GetComponent<Animator>().SetTrigger("play");
+        StartCoroutine(GenerateEnemies2());
         yield return new WaitForSeconds(10f);
         level2Roots[1].gameObject.SetActive(true);
         HaveRootSpawned[1] = true;
         level2Roots[1].GetComponent<Animator>().SetTrigger("play");
+        StartCoroutine(GenerateEnemies2());
         yield return new WaitForSeconds(15f);
         level2Roots[2].gameObject.SetActive(true);
         HaveRootSpawned[2] = true;
         level2Roots[2].GetComponent<Animator>().SetTrigger("play");
+        StartCoroutine(GenerateEnemies2());
         yield return new WaitForSeconds(20f);
         level2Roots[3].gameObject.SetActive(true);
         HaveRootSpawned[3] = true;
         level2Roots[3].GetComponent<Animator>().SetTrigger("play");
-        
         StartCoroutine(GenerateEnemies2());
     }
 
@@ -104,7 +108,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[0].EnemyInstances <= 0) EnemiesManager.Instance.HideAlert(0);
                 Random random = new Random();
-                float rnd = random.Next(5, 15);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 _generationZiguilinis[0].CanSpawn = true;
@@ -115,7 +119,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[1].EnemyInstances <= 1) EnemiesManager.Instance.HideAlert(1);
                 Random random = new Random();
-                float rnd = random.Next(5, 15);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 _generationZiguilinis[1].CanSpawn = true;
@@ -126,7 +130,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[2].EnemyInstances <= 2) EnemiesManager.Instance.HideAlert(2);
                 Random random = new Random();
-                float rnd = random.Next(5, 15);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 //Spawn Enemies
@@ -145,7 +149,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[0].EnemyInstances <= 0) EnemiesManager.Instance.HideAlert(0);
                 Random random = new Random();
-                float rnd = random.Next(5, 15);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 _generationZiguilinis[0].CanSpawn = true;
@@ -156,7 +160,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[1].EnemyInstances <= 1) EnemiesManager.Instance.HideAlert(1);
                 Random random = new Random();
-                float rnd = random.Next(5, 15);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 _generationZiguilinis[1].CanSpawn = true;
@@ -167,7 +171,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[2].EnemyInstances <= 2) EnemiesManager.Instance.HideAlert(2);
                 Random random = new Random();
-                float rnd = random.Next(5, 15);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 //Spawn Enemies
@@ -179,7 +183,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (_generationZiguilinis[3].EnemyInstances <= 3) EnemiesManager.Instance.HideAlert(3);
                 Random random = new Random();
-                float rnd = random.Next(5, 10);
+                float rnd = random.Next(0, 10);
                 yield return new WaitForSeconds(rnd);
                 //Spawn Enemies
                 //Spawn Enemies
