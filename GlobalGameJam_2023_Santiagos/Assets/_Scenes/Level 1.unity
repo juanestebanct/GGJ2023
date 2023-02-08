@@ -1357,7 +1357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &233768021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5652,6 +5652,11 @@ MonoBehaviour:
   - {fileID: 1108518747}
   - {fileID: 125931669267396872}
   - {fileID: 903483998332420336}
+  level2Roots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   levelTime: 120
   HaveRootSpawned: 0000000000
   loseScreen: {fileID: 526009646}
