@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool[] HaveRootSpawned = new bool[5];
     private float timer;
     private bool levelEnded;
+    private bool lose;
 
     [SerializeField] private GameObject loseScreen;
     
@@ -23,6 +24,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        lose = false;
         loseScreen.SetActive(false);
         if (Instance == null) Instance = this;
         else Destroy(this);
@@ -34,20 +36,12 @@ public class LevelManager : MonoBehaviour
         levelEnded = false;
         if (currentLevel == 1) StartCoroutine(Level1_RootManager());
         if (currentLevel == 2) StartCoroutine(Level2_RootManager());
-        
     }
 
     void Update()
     {
-        if (timer < levelTime)
-        {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            EndLevel(currentLevel);
-        }
-        
+        if (timer < levelTime && !lose) timer += Time.deltaTime;
+        else EndLevel(currentLevel);
     }
 
     public IEnumerator Level1_RootManager()
@@ -141,6 +135,8 @@ public class LevelManager : MonoBehaviour
         }
     }
     
+    private IEnumerator
+    
     public IEnumerator GenerateEnemies2()
     {
         while (!levelEnded)
@@ -215,10 +211,9 @@ public class LevelManager : MonoBehaviour
     public void Lose()
     {
         loseScreen.SetActive(true);
-        foreach (var VARIABLE in level1Roots)
-        {
-            VARIABLE.gameObject.SetActive(false);
-        }
+        lose = true;
+        foreach (var root in level1Roots) root.gameObject.SetActive(false);
+        foreach (var root in level2Roots) root.gameObject.SetActive(false);
     }
 
     public void Retry()

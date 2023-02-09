@@ -48,7 +48,4 @@ public class CameraManager : MonoBehaviour
         openMinimapBtn.SetActive(false);
         foreach (GameObject button in RootButtons) button.SetActive(true);
     }
-    
-    
-    
 }

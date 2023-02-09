@@ -166,9 +166,7 @@ public class Zinguilini : MonoBehaviour
     }
     IEnumerator ChageLoop()
     {
-        float starSpeed = stead;
         stop = true;
-        Vector3 posicion = transform.position;
         Position--;
         yield return new WaitForSeconds(time/2);
         Debug.Log("GAME OVER");
