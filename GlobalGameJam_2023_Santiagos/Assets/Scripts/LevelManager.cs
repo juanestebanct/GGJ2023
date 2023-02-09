@@ -58,7 +58,6 @@ public class LevelManager : MonoBehaviour
         SpawnRoot(1,1);
         yield return new WaitForSeconds(20f);
         SpawnRoot(1,2);
-        
     }
     
     public IEnumerator Level2_RootManager()
@@ -66,7 +65,6 @@ public class LevelManager : MonoBehaviour
         levelTime = 120;
         timer = 0;
         foreach (var root in level2Roots) root.gameObject.SetActive(false);
-        
         yield return new WaitForSeconds(5f);
         SpawnRoot(2,0);
         yield return new WaitForSeconds(10f);
@@ -107,7 +105,7 @@ public class LevelManager : MonoBehaviour
         while (!levelEnded)
         {
             yield return new WaitForEndOfFrame();
-            if (_generationZiguilinis[root].EnemyInstances <= 0) AlertManager.Instance.HideAlert(root);
+            //if (_generationZiguilinis[root].EnemyInstances <= 0) AlertManager.Instance.HideAlert(root);
             Random random = new Random();
             float rnd = random.Next(0, 10);
             yield return new WaitForSeconds(rnd);
