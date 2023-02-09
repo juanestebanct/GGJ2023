@@ -7,15 +7,15 @@ public class RootController : MonoBehaviour
 {
     private CameraManager _cameraManager;
     [SerializeField] private int _rootScenario = 0;
-    [SerializeField] private GameObject cameraButton;
-    [SerializeField] private GameObject alert;
+    [SerializeField] private GameObject _cameraButton;
+    [SerializeField] private GameObject _alert;
 
     private void Start()
     {
         _cameraManager = CameraManager.Instance;
-        _cameraManager.RootButtons.Add(cameraButton);
-        EnemiesManager.Instance.Alerts.Add(alert);
-        alert.SetActive(false);
+        _cameraManager.RootButtons.Add(_cameraButton);
+        AlertManager.Instance.Alerts.Add(_alert);
+        _alert.SetActive(false);
     }
 
     public void SetCamera()
@@ -27,9 +27,6 @@ public class RootController : MonoBehaviour
         else if (_rootScenario == 4) _cameraManager.ChangeCamera(4);
         else if (_rootScenario == 5) _cameraManager.ChangeCamera(5);
         
-        cameraButton.SetActive(false);
+        _cameraButton.SetActive(false);
     }
-    
-
-
 }

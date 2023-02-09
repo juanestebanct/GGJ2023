@@ -39,8 +39,12 @@ public class DetectAndKill : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) isPlayerInside = false;
-        other.GetComponent<CharacterController>().CanShoot = false;
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInside = false;
+            other.GetComponent<CharacterController>().CanShoot = false;
+        }
+        
     }
 
     IEnumerator Activation()

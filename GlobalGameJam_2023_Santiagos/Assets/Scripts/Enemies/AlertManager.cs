@@ -3,23 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemiesManager : MonoBehaviour
+public class AlertManager : MonoBehaviour
 {
-    public static EnemiesManager Instance;
+    public static AlertManager Instance;
 
-    public List<GameObject> Alerts = new List<GameObject>();
+    public List<GameObject> Alerts;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(this);
+        Alerts = new List<GameObject>();
     }
-
     private void Start()
     {
         foreach (var alert in Alerts) alert.SetActive(false);
     }
-
     public void ShowAlert(int root)
     {
         Alerts[root].SetActive(true);

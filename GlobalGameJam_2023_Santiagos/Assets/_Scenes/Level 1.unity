@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 122588157}
   - component: {fileID: 122588158}
   m_Layer: 0
-  m_Name: Alerts Manager
+  m_Name: Alert Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5648,15 +5648,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 1
-  level1Roots:
-  - {fileID: 1108518747}
-  - {fileID: 125931669267396872}
-  - {fileID: 903483998332420336}
-  level2Roots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   levelTime: 120
   HaveRootSpawned: 0000000000
   loseScreen: {fileID: 526009646}
@@ -5667,6 +5658,15 @@ MonoBehaviour:
   - {fileID: 1296432455}
   - {fileID: 1600279125}
   - {fileID: 1000189546}
+  level1Roots:
+  - {fileID: 1108518747}
+  - {fileID: 125931669267396872}
+  - {fileID: 903483998332420336}
+  level2Roots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &847933904
 GameObject:
   m_ObjectHideFlags: 0
@@ -7253,9 +7253,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1108518744}
-  - component: {fileID: 1108518746}
   - component: {fileID: 1108518745}
   - component: {fileID: 1108518747}
+  - component: {fileID: 1108518746}
   m_Layer: 0
   m_Name: Root 1.1
   m_TagString: Untagged
@@ -7364,8 +7364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootScenario: 0
-  cameraButton: {fileID: 175384336}
-  alert: {fileID: 125931670531044012}
+  _cameraButton: {fileID: 175384336}
+  _alert: {fileID: 125931670531044012}
 --- !u!1 &1109890286
 GameObject:
   m_ObjectHideFlags: 0
@@ -7974,7 +7974,7 @@ Transform:
   - {fileID: 813000765}
   - {fileID: 122588157}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1186442549
 GameObject:
@@ -8173,13 +8173,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199822571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.079773, y: 14.607153, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1820377685}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1199822574
 MonoBehaviour:
@@ -10509,7 +10509,7 @@ Transform:
   - {fileID: 434672337}
   - {fileID: 271454080}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1603814332
 PrefabInstance:
@@ -11945,7 +11945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1820377685}
   m_Layer: 0
-  m_Name: --->Vfs
+  m_Name: --->SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11962,9 +11962,10 @@ Transform:
   m_LocalPosition: {x: 10.079773, y: 14.607153, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1199822573}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827149357 stripped
 GameObject:
@@ -14576,8 +14577,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootScenario: 1
-  cameraButton: {fileID: 125931670208592195}
-  alert: {fileID: 1877659408}
+  _cameraButton: {fileID: 125931670208592195}
+  _alert: {fileID: 1877659408}
 --- !u!212 &125931669267396874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15226,8 +15227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rootScenario: 2
-  cameraButton: {fileID: 903483997122461883}
-  alert: {fileID: 1136334384}
+  _cameraButton: {fileID: 903483997122461883}
+  _alert: {fileID: 1136334384}
 --- !u!212 &903483998332420338
 SpriteRenderer:
   m_ObjectHideFlags: 0

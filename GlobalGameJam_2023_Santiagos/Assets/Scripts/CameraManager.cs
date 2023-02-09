@@ -42,6 +42,7 @@ public class CameraManager : MonoBehaviour
 
     public void OpenMinimap()
     {
+        foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
         rootParent.SetActive(true);
         minimap.SetActive(true);
         minimapCamera.SetActive(true);

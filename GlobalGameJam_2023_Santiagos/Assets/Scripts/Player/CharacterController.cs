@@ -7,35 +7,34 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     private Transform _transform;
-    private Rigidbody2D rb;
-    public ParticleSystem[] particula;
+    
+    [SerializeField] private ParticleSystem[] _particleSystems;
+    [SerializeField] private Transform[] _vfxPositions;
     [SerializeField] private float speed = 1f;
-    public Transform[] particule;
+    
     [Header("Limits")]
-    [SerializeField] private Transform northLimit;
-    [SerializeField] private Transform center;
-    [SerializeField] private Transform southLimit;
-    [SerializeField] private Transform eastLimit;
-    [SerializeField] private Transform westLimit;
-    [SerializeField] private AudioSource shoot;
-    private int indexParticule;
-    private Vector2 previousPosition;
-    private float elapsedTime;
-    private float verticalPosition;
-    private float horizontalPosition = 0;
-
-    public bool CanShoot;
-
+    [SerializeField] private Transform _center;
+    [SerializeField] private Transform _northLimit;
+    [SerializeField] private Transform _southLimit;
+    [SerializeField] private Transform _eastLimit;
+    [SerializeField] private Transform _westLimit;
+    [SerializeField] private AudioSource _shoot;
     [SerializeField] private Animator _animator;
     
+    private int _particleIndex;
+    private Vector2 _previousPosition;
+    private float _elapsedTime;
+    private float _verticalPosition;
+    private float _horizontalPosition = 0;
+
+    public bool CanShoot;
 
     private void Awake()
     {
         _transform = gameObject.transform;
-        rb = GetComponent<Rigidbody2D>();
-        transform.position = new Vector2(center.position.x, center.position.y);
-        verticalPosition = _transform.position.y;
-        horizontalPosition = _transform.position.x;
+        transform.position = _center.position;
+        _verticalPosition = _transform.position.y;
+        _horizontalPosition = _transform.position.x;
         CanShoot = false;
     }
 
@@ -51,8 +50,8 @@ public class CharacterController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1))
             {
-                particula[indexParticule].Play();
-                shoot.Play();
+                _particleSystems[_particleIndex].Play();
+                _shoot.Play();
                 if (_transform.position.x != 0)
                 {
                     _animator.SetTrigger("Attack");
@@ -71,42 +70,41 @@ public class CharacterController : MonoBehaviour
 
     private void Move()
     {
-        previousPosition = _transform.position;
+        _previousPosition = _transform.position;
 
         float verticalMovement = Input.GetAxisRaw("Vertical");
-
-        if ((int)verticalMovement == 1) verticalPosition = northLimit.position.y;
-        else if ((int)verticalMovement == -1) verticalPosition = southLimit.position.y;
-
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
         
+        if ((int)verticalMovement == 1) _verticalPosition = _northLimit.position.y;
+        else if ((int)verticalMovement == -1) _verticalPosition = _southLimit.position.y;
+
         _animator.SetFloat("H_Mov", Input.GetAxis("Horizontal"));
         _animator.SetFloat("V_Mov", Input.GetAxis("Vertical"));
 
-        if (horizontalMovement == 0) horizontalPosition = center.position.x;
+        if (horizontalMovement == 0) _horizontalPosition = _center.position.x;
         else if ((int)horizontalMovement == 1)
         {
-            particula[0].transform.position = particule[0].position;
-            indexParticule = 0;
-            horizontalPosition = eastLimit.position.x;
+            _particleSystems[0].transform.position = _vfxPositions[0].position;
+            _particleIndex = 0;
+            _horizontalPosition = _eastLimit.position.x;
         }
         else if ((int)horizontalMovement == -1)
         {
-            particula[1].transform.position = particule[1].position;
-            indexParticule = 1;
-            horizontalPosition = westLimit.position.x;
+            _particleSystems[1].transform.position = _vfxPositions[1].position;
+            _particleIndex = 1;
+            _horizontalPosition = _westLimit.position.x;
         }
 
         float xMovement = _transform.position.x;
         float yMovement = _transform.position.y;
         
-        if ((int) previousPosition.x == (int) center.position.x || Input.GetAxis("Horizontal") == 0)
+        if ((int) _previousPosition.x == (int) _center.position.x || Input.GetAxis("Horizontal") == 0)
         {
-            yMovement = Mathf.Lerp(previousPosition.y, verticalPosition, Time.deltaTime * speed);
+            yMovement = Mathf.Lerp(_previousPosition.y, _verticalPosition, Time.deltaTime * speed);
         }
-        if (previousPosition.y >= northLimit.position.y - 0.1f || (int)previousPosition.y <= (int)southLimit.position.y + 0.1f)
+        if (_previousPosition.y >= _northLimit.position.y - 0.1f || (int)_previousPosition.y <= (int)_southLimit.position.y + 0.1f)
         {
-            xMovement = Mathf.Lerp(previousPosition.x, horizontalPosition, Time.deltaTime * speed);
+            xMovement = Mathf.Lerp(_previousPosition.x, _horizontalPosition, Time.deltaTime * speed);
         }
         transform.position = new Vector2(xMovement,yMovement);
     }
