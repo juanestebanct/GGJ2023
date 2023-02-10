@@ -18,7 +18,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform _southLimit;
     [SerializeField] private Transform _eastLimit;
     [SerializeField] private Transform _westLimit;
-    [SerializeField] private AudioSource _shoot;
     [SerializeField] private Animator _animator;
     
     private int _particleIndex;
@@ -51,7 +50,7 @@ public class CharacterController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1))
             {
                 _particleSystems[_particleIndex].Play();
-                _shoot.Play();
+                AudioManager.Instance.Player_Shoot();
                 if (_transform.position.x != 0)
                 {
                     _animator.SetTrigger("Attack");

@@ -6,7 +6,7 @@ using DG.Tweening;
 public class Zinguilini : MonoBehaviour
 {
     [SerializeField] private Transform StarPosition;
-    [SerializeField] private Transform [] Positions;
+    [SerializeField] private Transform[] Positions;
     [SerializeField] private Rigidbody2D ZinguiliniRb;
     [SerializeField] private float Speed= 0.1f;
     [SerializeField] private Transform LastPositions;
@@ -109,7 +109,6 @@ public class Zinguilini : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         float DistanMe, OtheListan;
-        Debug.Log("coliciono");
         if (collision.gameObject.GetComponent<Zinguilini>())
         {
             Zinguilini othercollision = collision.gameObject.GetComponent<Zinguilini>();
