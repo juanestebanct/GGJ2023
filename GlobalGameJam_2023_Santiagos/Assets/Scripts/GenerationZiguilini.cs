@@ -82,13 +82,7 @@ public class GenerationZiguilini : MonoBehaviour
         timeSpawn = 5;
         GameObject Zinguilinii = (GameObject)Instantiate(ziguilini, initial.position, transform.rotation);
         Zinguilinii.GetComponent<Zinguilini>().Generator=this;
-        Debug.Log("ziguilini");
         EnemyInstances--;
-        // if (EnemyInstances==0)
-        // {
-        //     Debug.Log("Re creando las amenzas ");
-        //     StartCoroutine(Restreappearance());
-        // }
     }
   
 }
