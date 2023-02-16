@@ -26,6 +26,8 @@ public class CharacterController : MonoBehaviour
     private float _verticalPosition;
     private float _horizontalPosition = 0;
 
+    [SerializeField] private AudioSource playerDash;
+
     public bool CanShoot;
 
     private void Awake()
@@ -73,9 +75,17 @@ public class CharacterController : MonoBehaviour
 
         float verticalMovement = Input.GetAxisRaw("Vertical");
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
-        
-        if ((int)verticalMovement == 1) _verticalPosition = _northLimit.position.y;
-        else if ((int)verticalMovement == -1) _verticalPosition = _southLimit.position.y;
+
+        if ((int)verticalMovement == 1)
+        {
+            if (!playerDash.isPlaying) playerDash.Play();
+            _verticalPosition = _northLimit.position.y;
+        }
+        else if ((int)verticalMovement == -1)
+        {
+            if (!playerDash.isPlaying) playerDash.Play();
+            _verticalPosition = _southLimit.position.y;
+        }
 
         _animator.SetFloat("H_Mov", Input.GetAxis("Horizontal"));
         _animator.SetFloat("V_Mov", Input.GetAxis("Vertical"));
