@@ -81,7 +81,8 @@ public class CharacterController : MonoBehaviour
         _animator.SetFloat("V_Mov", Input.GetAxis("Vertical"));
 
         if (horizontalMovement == 0) _horizontalPosition = _center.position.x;
-        else if ((int)horizontalMovement == 1)
+        
+        if ((int)horizontalMovement == 1)
         {
             _particleSystems[0].transform.position = _vfxPositions[0].position;
             _particleIndex = 0;
@@ -97,10 +98,13 @@ public class CharacterController : MonoBehaviour
         float xMovement = _transform.position.x;
         float yMovement = _transform.position.y;
         
-        if ((int) _previousPosition.x == (int) _center.position.x || Input.GetAxis("Horizontal") == 0)
-        {
-            yMovement = Mathf.Lerp(_previousPosition.y, _verticalPosition, Time.deltaTime * speed);
-        }
+        // if ((int) _previousPosition.x == (int) _center.position.x || Input.GetAxis("Horizontal") == 0)
+        // {
+        //     yMovement = Mathf.Lerp(_previousPosition.y, _verticalPosition, Time.deltaTime * speed);
+        // }
+        
+        yMovement = Mathf.Lerp(_previousPosition.y, _verticalPosition, Time.deltaTime * speed);
+        
         if (_previousPosition.y >= _northLimit.position.y - 0.1f || (int)_previousPosition.y <= (int)_southLimit.position.y + 0.1f)
         {
             xMovement = Mathf.Lerp(_previousPosition.x, _horizontalPosition, Time.deltaTime * speed);
