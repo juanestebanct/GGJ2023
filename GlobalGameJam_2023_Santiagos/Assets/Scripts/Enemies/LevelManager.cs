@@ -105,6 +105,11 @@ public class LevelManager : MonoBehaviour
             level2Roots[root].gameObject.SetActive(true);
             level2Roots[root].GetComponent<Animator>().SetTrigger("play");
         }
+        else if (level == 3)
+        {
+            level3Roots[root].gameObject.SetActive(true);
+            level3Roots[root].GetComponent<Animator>().SetTrigger("play");
+        }
     } 
 
     private void GenerateEnemies()

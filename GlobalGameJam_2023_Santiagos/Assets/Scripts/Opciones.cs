@@ -19,11 +19,11 @@ public class Opciones : MonoBehaviour
     public void OpcioneActive()
     {
         opciones.SetActive(true);
-        menu.SetActive(false);
+        //menu.SetActive(false);
     }
     public void Desactivar()
     {
         opciones.SetActive(false);
-        menu.SetActive(true);
+        //menu.SetActive(true);
     }
 }

@@ -47,65 +47,61 @@ public class Zinguilini : MonoBehaviour
         StarPosition= Generator.GetZinguiliniStarPosition(ruta-1);
         ZinguiliniRb = GetComponent<Rigidbody2D>();
 
-
         transform.position = StarPosition.position;
         direction = transform.position - Positions[0].position;
 
         if (LevelManager.Instance.CurrentLevel == 1) Speed = 0.3f;
         if (LevelManager.Instance.CurrentLevel == 2) Speed = 0.3f;
+        if (LevelManager.Instance.CurrentLevel == 3) Speed = 0.3f;
     }
     
     void Update()
     {
-        if (!stop && Positions.Length!= (Position))
-        {         
-            transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead); 
-            float a = Vector3.Distance(transform.position, Positions[Position].position);
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
-            
-            if (Positions.Length != (Position)) direction = transform.position - Positions[Position].position;
-            else direction = transform.position - LastPositions.position;
-            
-            if (a==0)
-            {
-                Position++;
-                Debug.Log(Position); 
-                StartCoroutine(StopOneMoment());
-            }
-        }
-        //si ya llega a la finala
-        else if (!stop && Positions.Length==(Position))
+        if (Time.timeScale == 1)
         {
-            transform.position = Vector3.MoveTowards(transform.position, LastPositions.position, stead);
-            float a = Vector3.Distance(transform.position, LastPositions.position);
-            if (a <= 0.1f)
+            if (!stop && Positions.Length != Position)
+            {         
+                transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead); 
+                float a = Vector3.Distance(transform.position, Positions[Position].position);
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+            
+                if (Positions.Length != (Position)) direction = transform.position - Positions[Position].position;
+                else direction = transform.position - LastPositions.position;
+            
+                if (a==0)
+                {
+                    Position++;
+                    Debug.Log(Position); 
+                    StartCoroutine(StopOneMoment());
+                }
+            }
+            else if (!stop && Positions.Length==(Position))
             {
-                StartCoroutine(ChageLoop());
+                transform.position = Vector3.MoveTowards(transform.position, LastPositions.position, stead);
+                float a = Vector3.Distance(transform.position, LastPositions.position);
+                if (a <= 0.1f)
+                {
+                    StartCoroutine(ChageLoop());
+                }
             }
         }
-       
-       // Debug.Log(a+"faltantes");
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        float DistanMe, OtheListan;
         if (collision.gameObject.GetComponent<Zinguilini>())
         {
             Zinguilini othercollision = collision.gameObject.GetComponent<Zinguilini>();
-                StartCoroutine(OtherDirecion(othercollision));
+            StartCoroutine(OtherDirecion(othercollision));
         }
        
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Root" && !dead)
-        {
-            Debug.Log("rama choco");
-        }
- 
+        if (col.CompareTag("Root") && !dead) Debug.Log("rama choco");
     }
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "PlayerAtack" && !dead)

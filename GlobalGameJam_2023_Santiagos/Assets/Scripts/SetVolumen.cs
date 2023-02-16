@@ -12,6 +12,17 @@ public class SetVolumen : MonoBehaviour
     public Slider SFX;
     private void Awake()
     {
+        if (PlayerPrefs.HasKey("Volume_Master")) Master.value = PlayerPrefs.GetFloat("Volume_Master");
+        else Master.value = 1;
+        if(PlayerPrefs.HasKey("Volume_BGM")) Music.value = PlayerPrefs.GetFloat("Volume_BGM");
+        else Music.value = 1;
+        if(PlayerPrefs.HasKey("Volume_SFX")) SFX.value = PlayerPrefs.GetFloat("Volume_SFX");
+        else SFX.value = 1;
+        
+        mixer.SetFloat("GeneralVol", Mathf.Log10(Master.value) * 20);
+        mixer.SetFloat("MusicVol", Mathf.Log10(Music.value) * 20);
+        mixer.SetFloat("VFXVol", Mathf.Log10(SFX.value) * 20);
+        
         Master.onValueChanged.AddListener(SetLevel);
         Music.onValueChanged.AddListener(SetLevelMusic);
         SFX.onValueChanged.AddListener(SetLevelSFX);
@@ -19,19 +30,22 @@ public class SetVolumen : MonoBehaviour
 
     public void SetLevel(float SliderValue)
     {
-        //Debug.Log(SliderValue);
-        mixer.SetFloat("GeneralVol", Mathf.Log10(SliderValue) * 20);
+        float value = Mathf.Log10(SliderValue) * 20;
+        mixer.SetFloat("GeneralVol", value);
+        PlayerPrefs.SetFloat("Volume_Master", SliderValue);
     }
 
     public void SetLevelMusic(float SliderValue)
     {
-        // mixer.SetFloat("MusicVol", SliderValue);
-        mixer.SetFloat("MusicVol", Mathf.Log10(SliderValue) * 20);
+        float value = Mathf.Log10(SliderValue) * 20;
+        mixer.SetFloat("MusicVol", value);
+        PlayerPrefs.SetFloat("Volume_BGM", SliderValue);
     }
     public void SetLevelSFX(float SliderValue)
     {
-        //mixer.SetFloat("VFXVol", SliderValue);
-        mixer.SetFloat("VFXVol", Mathf.Log10(SliderValue) * 20);
+        float value = Mathf.Log10(SliderValue) * 20;
+        mixer.SetFloat("VFXVol", value);
+        PlayerPrefs.SetFloat("Volume_SFX", SliderValue);
     }
 
 
