@@ -95,6 +95,7 @@ public class LevelManager : MonoBehaviour
     private void SpawnRoot(int level, int root)
     {
         HaveRootSpawned[root] = true;
+        AudioManager.Instance.Spawn_Root();
         if (level == 1)
         {
             level1Roots[root].gameObject.SetActive(true);
