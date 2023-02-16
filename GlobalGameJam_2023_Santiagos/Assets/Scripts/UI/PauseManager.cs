@@ -23,13 +23,14 @@ public class PauseManager : MonoBehaviour
 
     private void Pause()
     {
-        if (!pause) { Time.timeScale = 0; pause = true; pauseMenu.SetActive(true); }
+        if (!pause) { Time.timeScale = 0; pause = true; pauseMenu.SetActive(true); AudioManager.Instance.Pause(); }
         else Resume();
     }
 
     public void Resume()
     {
         Time.timeScale = 1; pause = false; pauseMenu.SetActive(false); settingsMenu.Desactivar();
+        AudioManager.Instance.Resume();
     }
     
     public void Menu()

@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource ui_as;
     [SerializeField] private AudioSource roots_as;
     [SerializeField] private AudioClip[] sfx;
+    [SerializeField] private AudioSource music_as;
+
 
     private void Awake()
     {
@@ -55,6 +57,14 @@ public class AudioManager : MonoBehaviour
         ui_as.pitch = 1;
         ui_as.clip = sfx[6];
         ui_as.Play();
+        music_as.Pause();
+    }
+    public void Resume()
+    {
+        ui_as.pitch = 1;
+        ui_as.clip = sfx[7];
+        ui_as.Play();
+        music_as.Play();
     }
     public void Dispario_Muerte()
     {

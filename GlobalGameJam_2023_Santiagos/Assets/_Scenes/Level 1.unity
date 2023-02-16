@@ -4310,6 +4310,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 55399352f39441248b77186368206cd3, type: 3}
   - {fileID: 8300000, guid: 1aeaa9a1b1388174b914c3dfb724ac48, type: 3}
   - {fileID: 8300000, guid: 036407ce065fd704d87394c47d6d2328, type: 3}
+  - {fileID: 8300000, guid: dd20ccd85b8f0294891d6e49f67fb424, type: 3}
+  music_as: {fileID: 1415581852}
 --- !u!1001 &1259806694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4801,11 +4803,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3542831601301132864, guid: df85ef66708366a4998eec1032746990, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c84663f35e8c80c4db2ac29a7e5e1ce9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6294,7 +6296,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2917155339875147939, guid: df85ef66708366a4998eec1032746990, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.712
+  m_Volume: 0.171
   m_Pitch: 1
   Loop: 0
   Mute: 0
