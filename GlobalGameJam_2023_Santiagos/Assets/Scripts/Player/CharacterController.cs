@@ -105,10 +105,13 @@ public class CharacterController : MonoBehaviour
         
         yMovement = Mathf.Lerp(_previousPosition.y, _verticalPosition, Time.deltaTime * speed);
         
-        if (_previousPosition.y >= _northLimit.position.y - 0.1f || (int)_previousPosition.y <= (int)_southLimit.position.y + 0.1f)
-        {
-            xMovement = Mathf.Lerp(_previousPosition.x, _horizontalPosition, Time.deltaTime * speed);
-        }
+        xMovement = Mathf.Lerp(_previousPosition.x, _horizontalPosition, Time.deltaTime * speed);
+        
+        // if (_previousPosition.y >= _northLimit.position.y - 0.1f || (int)_previousPosition.y <= (int)_southLimit.position.y + 0.1f)
+        // {
+        //     xMovement = Mathf.Lerp(_previousPosition.x, _horizontalPosition, Time.deltaTime * speed);
+        // }
+        
         transform.position = new Vector2(xMovement,yMovement);
     }
     
