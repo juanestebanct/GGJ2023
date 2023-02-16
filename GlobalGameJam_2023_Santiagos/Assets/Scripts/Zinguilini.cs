@@ -37,7 +37,7 @@ public class Zinguilini : MonoBehaviour
         
         stead = Speed * Time.deltaTime;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         render = GetComponent<Renderer>();
@@ -50,46 +50,28 @@ public class Zinguilini : MonoBehaviour
 
         transform.position = StarPosition.position;
         direction = transform.position - Positions[0].position;
-        for(int i = 0; i < Positions.Length; i++)
-        {
-         //   Positions[i].position=   new Vector3(Random.Range(-1, 1)+, Random.Range(-1,1), 0);
 
-        }
+        if (LevelManager.Instance.CurrentLevel == 1) Speed = 0.3f;
+        if (LevelManager.Instance.CurrentLevel == 2) Speed = 0.3f;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
-        if (!dead && Input.GetKeyDown("space"))
-        {
-            dead = true;
-            Debug.Log("murio");
-          //  Dead();
-        }
-        //si hay posiciones de ir va 
         if (!stop && Positions.Length!= (Position))
         {         
             transform.position = Vector3.MoveTowards(transform.position, Positions[Position].position, stead); 
             float a = Vector3.Distance(transform.position, Positions[Position].position);
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, stead, 0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
-            if (Positions.Length != (Position))
-            {
-                direction = transform.position - Positions[Position].position;
-            }
-            else
-            {
-                direction = transform.position - LastPositions.position;
-            }
+            
+            if (Positions.Length != (Position)) direction = transform.position - Positions[Position].position;
+            else direction = transform.position - LastPositions.position;
+            
             if (a==0)
             {
-                
                 Position++;
                 Debug.Log(Position); 
                 StartCoroutine(StopOneMoment());
-                
-                
             }
         }
         //si ya llega a la finala
@@ -152,8 +134,8 @@ public class Zinguilini : MonoBehaviour
     IEnumerator StopOneMoment()
     {
         stop = true;
-         Vector3 posicion = transform.position;
- 
+        Vector3 posicion = transform.position;
+
         DOTween.Sequence()
           .Append(transform.DOMove(transform.position + new Vector3(Random.Range(0.1f, 0.1f), Random.Range(0.1f, 0.1f), 0), 0.5f))
            .Append(transform.DOMove(posicion, 0.5f)) ;

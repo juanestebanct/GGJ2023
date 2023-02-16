@@ -16,6 +16,7 @@ public class RootController : MonoBehaviour
         _cameraManager.RootButtons.Add(_cameraButton);
         AlertManager.Instance.Alerts.Add(_alert);
         _alert.SetActive(false);
+        if (!_cameraManager.IsOnMinimap) _cameraButton.SetActive(false);
     }
 
     public void SetCamera()

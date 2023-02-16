@@ -9,9 +9,9 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     
-    [SerializeField] private int currentLevel = 1;
+    public int CurrentLevel = 1;
     [SerializeField] private float levelTime;
-    private float timer;
+    [SerializeField] private float timer;
     private bool levelEnded;
     private bool lose;
     
@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GenerationZiguilini[] _generationZiguilinis = new GenerationZiguilini[6];
     [SerializeField] private RootController[] level1Roots = new RootController[3];
     [SerializeField] private RootController[] level2Roots = new RootController[4];
+    [SerializeField] private RootController[] level3Roots = new RootController[4];
 
     private void Awake()
     {
@@ -33,8 +34,9 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         levelEnded = false;
-        if (currentLevel == 1) StartCoroutine(Level1_RootManager());
-        if (currentLevel == 2) StartCoroutine(Level2_RootManager());
+        if (CurrentLevel == 1) StartCoroutine(Level1_RootManager());
+        if (CurrentLevel == 2) StartCoroutine(Level2_RootManager());
+        if (CurrentLevel == 3) StartCoroutine(Level3_RootManager());
     }
 
     void Update()
@@ -42,14 +44,14 @@ public class LevelManager : MonoBehaviour
         if (!lose)
         {
             if (timer < levelTime) timer += Time.deltaTime;
-            else EndLevel(currentLevel);
+            else EndLevel(CurrentLevel);
             GenerateEnemies();
         }
     }
 
     public IEnumerator Level1_RootManager()
     {
-        levelTime = 120;
+        if (levelTime <= 0)levelTime = 90;
         timer = 0;
         foreach (var root in level1Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
@@ -62,7 +64,7 @@ public class LevelManager : MonoBehaviour
     
     public IEnumerator Level2_RootManager()
     {
-        levelTime = 120;
+        if (levelTime <= 0)levelTime = 120;
         timer = 0;
         foreach (var root in level2Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(5f);
@@ -73,6 +75,21 @@ public class LevelManager : MonoBehaviour
         SpawnRoot(2,2);
         yield return new WaitForSeconds(20f);
         SpawnRoot(2,3);
+    }
+    
+    public IEnumerator Level3_RootManager()
+    {
+        if (levelTime <= 0)levelTime = 150;
+        timer = 0;
+        foreach (var root in level3Roots) root.gameObject.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        SpawnRoot(3,0);
+        yield return new WaitForSeconds(10f);
+        SpawnRoot(3,1);
+        yield return new WaitForSeconds(15f);
+        SpawnRoot(3,2);
+        yield return new WaitForSeconds(20f);
+        SpawnRoot(3,3);
     }
 
     private void SpawnRoot(int level, int root)
@@ -125,10 +142,13 @@ public class LevelManager : MonoBehaviour
 
     public void Lose()
     {
-        loseScreen.SetActive(true);
-        lose = true;
-        foreach (var root in level1Roots) root.gameObject.SetActive(false);
-        foreach (var root in level2Roots) root.gameObject.SetActive(false);
+        if (!lose)
+        {
+            loseScreen.SetActive(true);
+            lose = true;
+            if (CurrentLevel == 1) foreach (var root in level1Roots) root.gameObject.SetActive(false);
+            if (CurrentLevel == 2) foreach (var root in level2Roots) root.gameObject.SetActive(false);
+        }
     }
 
     public void Retry()

@@ -3127,8 +3127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a853d94d4c4b342885bba7cbbca37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
-  levelTime: 120
+  CurrentLevel: 1
+  levelTime: 90
+  timer: 0
   HaveRootSpawned: 0000000000
   loseScreen: {fileID: 526009646}
   _generationZiguilinis:
@@ -5923,8 +5924,8 @@ MonoBehaviour:
   - {fileID: 111678337}
   - {fileID: 1288320033}
   - {fileID: 614455019}
-  rootParent: {fileID: 446412814}
   RootButtons: []
+  IsOnMinimap: 0
 --- !u!1 &1863931239
 GameObject:
   m_ObjectHideFlags: 0

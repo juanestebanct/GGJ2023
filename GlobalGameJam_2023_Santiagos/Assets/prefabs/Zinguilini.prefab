@@ -107,7 +107,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ZinguiliniRb: {fileID: 0}
-  Speed: 0.5
+  Speed: 0.1
   LastPositions: {fileID: 0}
   Position: 0
   stop: 0

@@ -3430,8 +3430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a853d94d4c4b342885bba7cbbca37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentLevel: 2
-  levelTime: 120
+  CurrentLevel: 3
+  levelTime: 150
   timer: 0
   HaveRootSpawned: 0000000000
   loseScreen: {fileID: 526009646}
