@@ -25,6 +25,7 @@ public class CharacterController : MonoBehaviour
     private float _elapsedTime;
     private float _verticalPosition;
     private float _horizontalPosition = 0;
+    private bool isPlayingDash;
 
     [SerializeField] private AudioSource playerDash;
 
@@ -37,6 +38,7 @@ public class CharacterController : MonoBehaviour
         _verticalPosition = _transform.position.y;
         _horizontalPosition = _transform.position.x;
         CanShoot = false;
+        isPlayingDash = false;
     }
 
     private void Update()
@@ -68,6 +70,12 @@ public class CharacterController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _animator.SetBool("IsAttacking", false);
     }
+    private IEnumerator PlayDashAudio()
+    {
+        isPlayingDash = true;
+        yield return new WaitForSeconds(0.4f);
+        isPlayingDash = false;
+    }
 
     private void Move()
     {
@@ -78,7 +86,7 @@ public class CharacterController : MonoBehaviour
 
         if ((int)verticalMovement == 1)
         {
-            if (!playerDash.isPlaying) playerDash.Play();
+            if (!isPlayingDash) { playerDash.Play(); StartCoroutine(PlayDashAudio()); }
             _verticalPosition = _northLimit.position.y;
         }
         else if ((int)verticalMovement == -1)
