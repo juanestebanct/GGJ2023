@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,26 +7,27 @@ using UnityEngine.UI;
 public class screncontroller : MonoBehaviour
 {
     public Toggle toggle;
-    // Start is called before the first frame update
-    void Start()
+    private int isFullscreen = 1; // 0 = false, 1 = true
+
+    private void Awake()
     {
-        if (Screen.fullScreen)
-        {
-            toggle.isOn = true;
-        }
-        else
-        {
-            toggle.isOn = false;
-        }
+        if (PlayerPrefs.HasKey("Fullscreen")) isFullscreen = PlayerPrefs.GetInt("Fullscreen");
+        else isFullscreen = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
+        if (isFullscreen == 1) Screen.fullScreen = true;
+        else Screen.fullScreen = false;
         
+        if (Screen.fullScreen) toggle.isOn = true;
+        else toggle.isOn = false;
     }
-    public void ActivefullCren(bool scren)
+    
+    public void ActivefullCren(bool screen)
     {
-        Screen.fullScreen = scren;
+        Screen.fullScreen = screen;
+        if (screen) isFullscreen = 1;
+        else isFullscreen = 0;
     }
 }

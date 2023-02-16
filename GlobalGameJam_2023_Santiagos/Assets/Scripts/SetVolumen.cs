@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,14 +19,17 @@ public class SetVolumen : MonoBehaviour
         else Music.value = 1;
         if(PlayerPrefs.HasKey("Volume_SFX")) SFX.value = PlayerPrefs.GetFloat("Volume_SFX");
         else SFX.value = 1;
-        
-        mixer.SetFloat("GeneralVol", Mathf.Log10(Master.value) * 20);
-        mixer.SetFloat("MusicVol", Mathf.Log10(Music.value) * 20);
-        mixer.SetFloat("VFXVol", Mathf.Log10(SFX.value) * 20);
-        
+
         Master.onValueChanged.AddListener(SetLevel);
         Music.onValueChanged.AddListener(SetLevelMusic);
         SFX.onValueChanged.AddListener(SetLevelSFX);
+    }
+
+    private void Start()
+    {
+        mixer.SetFloat("GeneralVol", Mathf.Log10(Master.value) * 20);
+        mixer.SetFloat("MusicVol", Mathf.Log10(Music.value) * 20);
+        mixer.SetFloat("VFXVol", Mathf.Log10(SFX.value) * 20);
     }
 
     public void SetLevel(float SliderValue)
