@@ -17,12 +17,15 @@ public class IntroSceneManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        loadingScreen.SetActive(false);
-        nightToDay.enabled = false;
-        dayToNight.enabled = false;
-        
-        if (nextLevelIsNight) nightToDay.gameObject.SetActive(false);
-        else dayToNight.gameObject.SetActive(false);
+
+        if (SceneManager.GetActiveScene().name != "Credits")
+        {
+            loadingScreen.SetActive(false);
+            nightToDay.enabled = false;
+            dayToNight.enabled = false;
+            if (nextLevelIsNight) nightToDay.gameObject.SetActive(false);
+            else dayToNight.gameObject.SetActive(false);
+        }
         
         StartCoroutine(LoadScene());
     }
@@ -30,7 +33,9 @@ public class IntroSceneManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return new WaitForSeconds(duration);
-        StartCoroutine(LoadSceneAsync());
+        if (SceneManager.GetActiveScene().name != "Credits") StartCoroutine(LoadSceneAsync());
+        else SceneManager.LoadScene(sceneToLoad);
+        
     }
 
     IEnumerator LoadSceneAsync()
