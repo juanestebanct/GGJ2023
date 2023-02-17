@@ -66,15 +66,5 @@ public class AudioManager : MonoBehaviour
         ui_as.Play();
         music_as.Play();
     }
-    public void Dispario_Muerte()
-    {
-        roots_as.pitch = 1;
-        player_as.clip = sfx[4];
-        roots_as.Play();
-    }
-
-
-
-
 
 }

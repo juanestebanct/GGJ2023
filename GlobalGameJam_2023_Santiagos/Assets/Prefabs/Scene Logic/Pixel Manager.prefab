@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rendererData: {fileID: 11400000, guid: 21bbc74a272bbad409807dec9e34da83, type: 2}
-  _sceneType: 1
+  _sceneType: 3
   defaultSize: 200
   mainMenuSize: 300
   introSize: 300
   levelSize: 200
-  levelInBetweenSize: 200
+  levelInBetweenSize: 150

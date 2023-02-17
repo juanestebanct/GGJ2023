@@ -25037,6 +25037,7 @@ MonoBehaviour:
   _eastLimit: {fileID: 6987085244085980029}
   _westLimit: {fileID: 6987085245408467050}
   _animator: {fileID: 2096371318}
+  playerDash: {fileID: 8849924930270484343}
   CanShoot: 0
 --- !u!50 &6987085244219056894
 Rigidbody2D:
