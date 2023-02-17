@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float levelTime;
     [SerializeField] private float timer;
     private bool levelEnded;
-    private bool lose;
+    public bool HasLose;
     
     [SerializeField] private bool[] HaveRootSpawned = new bool[5];
     [SerializeField] private GameObject loseScreen;
@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        lose = false;
+        HasLose = false;
         loseScreen.SetActive(false);
         if (Instance == null) Instance = this;
         else Destroy(this);
@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (!lose)
+        if (!HasLose)
         {
             if (timer < levelTime) timer += Time.deltaTime;
             else EndLevel(CurrentLevel);
@@ -57,13 +57,11 @@ public class LevelManager : MonoBehaviour
         foreach (var root in level1Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
         SpawnRoot(1,0);
-        SelectorManager.Instance.EnableSelectorPosition(0);
         yield return new WaitForSeconds(10f);
         SpawnRoot(1,1);
-        SelectorManager.Instance.EnableSelectorPosition(1);
         yield return new WaitForSeconds(20f);
         SpawnRoot(1,2);
-        SelectorManager.Instance.EnableSelectorPosition(2);
+        
     }
     
     private IEnumerator Level2_RootManager()
@@ -86,20 +84,17 @@ public class LevelManager : MonoBehaviour
         if (levelTime <= 0) levelTime = 200;
         timer = 0;
         foreach (var root in level3Roots) root.gameObject.SetActive(false);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         SpawnRoot(3,0);
-        yield return new WaitForSeconds(5f);
         SpawnRoot(3,1);
-        yield return new WaitForSeconds(5f);
         SpawnRoot(3,2);
-        yield return new WaitForSeconds(5f);
         SpawnRoot(3,3);
-        yield return new WaitForSeconds(5f);
         SpawnRoot(3,4);
     }
 
     private void SpawnRoot(int level, int root)
     {
+        SelectorManager.Instance.EnableSelectorPosition(root);
         HaveRootSpawned[root] = true;
         AudioManager.Instance.Spawn_Root();
         switch (level)
@@ -140,9 +135,9 @@ public class LevelManager : MonoBehaviour
             Random random = new Random();
             float rnd = random.Next(0, 10);
             yield return new WaitForSeconds(rnd);
-            if (LevelManager.Instance.CurrentLevel == 1) _generationZiguilinis[root].EnemyInstances = 1;
-            if (LevelManager.Instance.CurrentLevel == 2) _generationZiguilinis[root].EnemyInstances = 2;
-            if (LevelManager.Instance.CurrentLevel == 3) _generationZiguilinis[root].EnemyInstances = 3;
+            if (CurrentLevel == 1) _generationZiguilinis[root].EnemyInstances = 1;
+            if (CurrentLevel == 2) _generationZiguilinis[root].EnemyInstances = 2;
+            if (CurrentLevel == 3) _generationZiguilinis[root].EnemyInstances = 3;
             _generationZiguilinis[root].CanSpawn = true;
 
             AlertManager.Instance.ShowAlert(root);
@@ -159,10 +154,10 @@ public class LevelManager : MonoBehaviour
 
     public void Lose()
     {
-        if (!lose)
+        if (!HasLose)
         {
             loseScreen.SetActive(true);
-            lose = true;
+            HasLose = true;
             if (CurrentLevel == 1) foreach (var root in level1Roots) root.gameObject.SetActive(false);
             if (CurrentLevel == 2) foreach (var root in level2Roots) root.gameObject.SetActive(false);
         }

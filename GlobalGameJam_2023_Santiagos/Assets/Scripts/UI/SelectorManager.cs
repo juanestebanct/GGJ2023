@@ -29,7 +29,7 @@ public class SelectorManager : MonoBehaviour
 
     private void Update()
     {
-        if(CameraManager.Instance.IsOnMinimap) MovePosition();
+        if(CameraManager.Instance.IsOnMinimap && !LevelManager.Instance.HasLose) MovePosition();
     }
 
     public void EnableSelectorPosition(int position)
