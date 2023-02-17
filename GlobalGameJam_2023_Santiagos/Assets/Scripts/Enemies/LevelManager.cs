@@ -156,6 +156,8 @@ public class LevelManager : MonoBehaviour
     {
         if (!HasLose)
         {
+            SelectorManager.Instance.DisableSelectors();
+            SelectorManager.Instance.DisableMinimapSelector();
             loseScreen.SetActive(true);
             HasLose = true;
             if (CurrentLevel == 1) foreach (var root in level1Roots) root.gameObject.SetActive(false);

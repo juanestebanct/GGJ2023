@@ -28,7 +28,7 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if (!IsOnMinimap)
+        if (!IsOnMinimap && !LevelManager.Instance.HasLose)
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -40,32 +40,38 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCamera(int camera)
     {
-        IsOnMinimap = false;
-        SelectorManager.Instance.EnableMinimapSelector();
-        SelectorManager.Instance.DisableSelectors();
-        foreach (var rootButton in RootButtons) rootButton.SetActive(false);
-        foreach (var cam in cameras) cam.SetActive(false);
-        foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
-        foreach (GameObject button in RootButtons) button.SetActive(false);
+        if (!LevelManager.Instance.HasLose)
+        {
+            IsOnMinimap = false;
+            SelectorManager.Instance.EnableMinimapSelector();
+            SelectorManager.Instance.DisableSelectors();
+            foreach (var rootButton in RootButtons) rootButton.SetActive(false);
+            foreach (var cam in cameras) cam.SetActive(false);
+            foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
+            foreach (GameObject button in RootButtons) button.SetActive(false);
         
-        cameras[camera].SetActive(true);
-        fiumbotControllers[camera].SetActive(true);
+            cameras[camera].SetActive(true);
+            fiumbotControllers[camera].SetActive(true);
 
-        minimap.SetActive(false);
-        minimapCamera.SetActive(false);
-        openMinimapBtn.SetActive(true);
+            minimap.SetActive(false);
+            minimapCamera.SetActive(false);
+            openMinimapBtn.SetActive(true);
+        }
     }
 
     public void OpenMinimap()
     {
-        SelectorManager.Instance.DisableMinimapSelector();
-        SelectorManager.Instance.EnableSelectors();
-        IsOnMinimap = true;
-        foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
-        foreach (var rootButton in RootButtons) rootButton.SetActive(true);
-        minimap.SetActive(true);
-        minimapCamera.SetActive(true);
-        openMinimapBtn.SetActive(false);
-        foreach (GameObject button in RootButtons) button.SetActive(true);
+        if (!LevelManager.Instance.HasLose)
+        {
+            SelectorManager.Instance.DisableMinimapSelector();
+            SelectorManager.Instance.EnableSelectors();
+            IsOnMinimap = true;
+            foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
+            foreach (var rootButton in RootButtons) rootButton.SetActive(true);
+            minimap.SetActive(true);
+            minimapCamera.SetActive(true);
+            openMinimapBtn.SetActive(false);
+            foreach (GameObject button in RootButtons) button.SetActive(true);
+        }
     }
 }

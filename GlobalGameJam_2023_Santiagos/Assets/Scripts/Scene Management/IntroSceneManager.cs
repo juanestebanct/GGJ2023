@@ -18,7 +18,7 @@ public class IntroSceneManager : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        if (SceneManager.GetActiveScene().name != "Credits")
+        if (SceneManager.GetActiveScene().name != "Credits" && SceneManager.GetActiveScene().name != "Level 1 Intro")
         {
             loadingScreen.SetActive(false);
             nightToDay.enabled = false;
@@ -33,9 +33,8 @@ public class IntroSceneManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return new WaitForSeconds(duration);
-        if (SceneManager.GetActiveScene().name != "Credits") StartCoroutine(LoadSceneAsync());
+        if (SceneManager.GetActiveScene().name != "Credits" && SceneManager.GetActiveScene().name != "Level 1 Intro") StartCoroutine(LoadSceneAsync());
         else SceneManager.LoadScene(sceneToLoad);
-        
     }
 
     IEnumerator LoadSceneAsync()
@@ -54,7 +53,8 @@ public class IntroSceneManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
         {
-            StartCoroutine(LoadSceneAsync());
+            if (SceneManager.GetActiveScene().name != "Credits" && SceneManager.GetActiveScene().name != "Level 1 Intro") StartCoroutine(LoadSceneAsync());
+            else SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
