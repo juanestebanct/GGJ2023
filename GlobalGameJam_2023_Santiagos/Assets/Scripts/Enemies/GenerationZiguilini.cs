@@ -52,18 +52,14 @@ public class GenerationZiguilini : MonoBehaviour
         {
             case 1:
                 return PositionsZinguilini1;
-                break;
             case 2:
                 return PositionsZinguilini2;
-                break;
             case 3:
                 return PositionsZinguilini3;
-                break;
             case 4:
                 return PositionsZinguilini4;
             default:
                 return PositionsZinguilini1;
-                break;
         }
     }
     public Transform GetZinguiliniLastPosition(int Ruta)

@@ -148,7 +148,7 @@ public class LevelManager : MonoBehaviour
     {
         levelEnded = true;
         if (completedLevel == 1) SceneManager.LoadScene("Level 2 Outro");
-        else if (completedLevel == 2) SceneManager.LoadScene("Credits");
+        else if (completedLevel == 2) SceneManager.LoadScene("Level 3 Intro");
         else if (completedLevel == 3) SceneManager.LoadScene("Credits");
     }
 

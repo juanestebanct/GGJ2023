@@ -10,6 +10,7 @@ public class IntroSceneManager : MonoBehaviour
     [SerializeField] private float duration;
     private void Start()
     {
+        Time.timeScale = 1;
         StartCoroutine(LoadScene());
     }
 
