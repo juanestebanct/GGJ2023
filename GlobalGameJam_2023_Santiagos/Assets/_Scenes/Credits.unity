@@ -272,6 +272,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: Main Menu
   duration: 70
+  loadingScreen: {fileID: 0}
+  branchAnimator: {fileID: 0}
+  nextLevelIsNight: 0
+  nightToDay: {fileID: 0}
+  dayToNight: {fileID: 0}
 --- !u!4 &1355084407
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +378,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537211644}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 50753e29a33201c49a6a5c7be02bdd8d, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: b97029780337e9046934dea020be06bb, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1023218707}
