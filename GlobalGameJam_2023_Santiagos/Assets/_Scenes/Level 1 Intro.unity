@@ -465,8 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511793d31358e504da46fa50c6074f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Level 1
-  duration: 51
+  sceneToLoad: Level 1 Outro
+  duration: 52
 --- !u!4 &1355084407
 Transform:
   m_ObjectHideFlags: 0
@@ -604,6 +604,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6341769814821013228, guid: 9bcea4191e22f1342b03adf8742d515c, type: 3}
+      propertyPath: _sceneType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6341769814821013229, guid: 9bcea4191e22f1342b03adf8742d515c, type: 3}
       propertyPath: m_RootOrder
       value: 5

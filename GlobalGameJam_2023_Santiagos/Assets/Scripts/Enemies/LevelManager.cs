@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         levelEnded = false;
         if (CurrentLevel == 1) StartCoroutine(Level1_RootManager());
         if (CurrentLevel == 2) StartCoroutine(Level2_RootManager());
@@ -49,9 +50,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public IEnumerator Level1_RootManager()
+    private IEnumerator Level1_RootManager()
     {
-        if (levelTime <= 0)levelTime = 90;
+        if (levelTime <= 0) levelTime = 90;
         timer = 0;
         foreach (var root in level1Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
@@ -62,54 +63,58 @@ public class LevelManager : MonoBehaviour
         SpawnRoot(1,2);
     }
     
-    public IEnumerator Level2_RootManager()
+    private IEnumerator Level2_RootManager()
     {
-        if (levelTime <= 0)levelTime = 120;
+        if (levelTime <= 0) levelTime = 120;
         timer = 0;
         foreach (var root in level2Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(5f);
         SpawnRoot(2,0);
         yield return new WaitForSeconds(10f);
         SpawnRoot(2,1);
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(10f);
         SpawnRoot(2,2);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(10f);
         SpawnRoot(2,3);
     }
     
-    public IEnumerator Level3_RootManager()
+    private IEnumerator Level3_RootManager()
     {
-        if (levelTime <= 0)levelTime = 150;
+        if (levelTime <= 0) levelTime = 200;
         timer = 0;
         foreach (var root in level3Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(5f);
         SpawnRoot(3,0);
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         SpawnRoot(3,1);
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(5f);
         SpawnRoot(3,2);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(5f);
         SpawnRoot(3,3);
+        yield return new WaitForSeconds(5f);
+        SpawnRoot(3,4);
     }
 
     private void SpawnRoot(int level, int root)
     {
+        Debug.Log("Entra");
         HaveRootSpawned[root] = true;
         AudioManager.Instance.Spawn_Root();
-        if (level == 1)
+        switch (level)
         {
-            level1Roots[root].gameObject.SetActive(true);
-            level1Roots[root].GetComponent<Animator>().SetTrigger("play");
-        }
-        else if (level == 2)
-        {
-            level2Roots[root].gameObject.SetActive(true);
-            level2Roots[root].GetComponent<Animator>().SetTrigger("play");
-        }
-        else if (level == 3)
-        {
-            level3Roots[root].gameObject.SetActive(true);
-            level3Roots[root].GetComponent<Animator>().SetTrigger("play");
+            case 1:
+                Debug.Log("Entra Level 1");
+                level1Roots[root].gameObject.SetActive(true);
+                level1Roots[root].GetComponent<Animator>().SetTrigger("play");
+                break;
+            case 2:
+                level2Roots[root].gameObject.SetActive(true);
+                level2Roots[root].GetComponent<Animator>().SetTrigger("play");
+                break;
+            case 3:
+                level3Roots[root].gameObject.SetActive(true);
+                level3Roots[root].GetComponent<Animator>().SetTrigger("play");
+                break;
         }
     } 
 
@@ -119,6 +124,7 @@ public class LevelManager : MonoBehaviour
         if (HaveRootSpawned[1]) StartCoroutine(EnemySpawnDelay(1));
         if (HaveRootSpawned[2]) StartCoroutine(EnemySpawnDelay(2));
         if (HaveRootSpawned[3]) StartCoroutine(EnemySpawnDelay(3));
+        if (HaveRootSpawned[4]) StartCoroutine(EnemySpawnDelay(4));
     }
 
     private IEnumerator EnemySpawnDelay(int root)
@@ -128,7 +134,7 @@ public class LevelManager : MonoBehaviour
         while (!levelEnded)
         {
             yield return new WaitForEndOfFrame();
-            //if (_generationZiguilinis[root].EnemyInstances <= 0) AlertManager.Instance.HideAlert(root);
+            if (_generationZiguilinis[root].EnemyInstances <= 0) AlertManager.Instance.HideAlert(root);
             Random random = new Random();
             float rnd = random.Next(0, 10);
             yield return new WaitForSeconds(rnd);
