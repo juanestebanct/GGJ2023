@@ -11,10 +11,19 @@ public class IntroSceneManager : MonoBehaviour
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Animator branchAnimator;
     [SerializeField] private bool nextLevelIsNight;
+
+    [SerializeField] private Animator nightToDay;
+    [SerializeField] private Animator dayToNight;
     private void Start()
     {
         Time.timeScale = 1;
         loadingScreen.SetActive(false);
+        nightToDay.enabled = false;
+        dayToNight.enabled = false;
+        
+        if (nextLevelIsNight) nightToDay.gameObject.SetActive(false);
+        else dayToNight.gameObject.SetActive(false);
+        
         StartCoroutine(LoadScene());
     }
 
@@ -29,11 +38,9 @@ public class IntroSceneManager : MonoBehaviour
         loadingScreen.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         branchAnimator.SetTrigger("Grow");
-        if (nextLevelIsNight)
-        {
-            
-        }
-        yield return new WaitForSeconds(1f);
+        if (nextLevelIsNight) dayToNight.enabled = true;
+        else nightToDay.enabled = true;
+        yield return new WaitForSeconds(3.4f);
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneToLoad);
         while (!loadOperation.isDone) yield return null;
     }
