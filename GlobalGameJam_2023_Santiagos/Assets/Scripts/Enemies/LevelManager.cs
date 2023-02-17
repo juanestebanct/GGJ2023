@@ -138,8 +138,11 @@ public class LevelManager : MonoBehaviour
             Random random = new Random();
             float rnd = random.Next(0, 10);
             yield return new WaitForSeconds(rnd);
+            if (LevelManager.Instance.CurrentLevel == 1) _generationZiguilinis[root].EnemyInstances = 1;
+            if (LevelManager.Instance.CurrentLevel == 2) _generationZiguilinis[root].EnemyInstances = 2;
+            if (LevelManager.Instance.CurrentLevel == 3) _generationZiguilinis[root].EnemyInstances = 3;
             _generationZiguilinis[root].CanSpawn = true;
-            _generationZiguilinis[root].EnemyInstances = 3;
+
             AlertManager.Instance.ShowAlert(root);
         }
     }
