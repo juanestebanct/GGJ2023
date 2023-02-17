@@ -35,7 +35,7 @@ public class Zinguilini : MonoBehaviour
             volador.SetActive(true);
         }
         
-        stead = Speed * Time.deltaTime;
+       
     }
 
     void Start()
@@ -50,13 +50,14 @@ public class Zinguilini : MonoBehaviour
         transform.position = StarPosition.position;
         direction = transform.position - Positions[0].position;
 
-        if (LevelManager.Instance.CurrentLevel == 1) Speed = 0.3f;
-        if (LevelManager.Instance.CurrentLevel == 2) Speed = 0.3f;
-        if (LevelManager.Instance.CurrentLevel == 3) Speed = 0.3f;
+        if (LevelManager.Instance.CurrentLevel == 1) Speed = .9f;
+        if (LevelManager.Instance.CurrentLevel == 2) Speed = .7f;
+        if (LevelManager.Instance.CurrentLevel == 3) Speed = .6f;
     }
     
     void Update()
     {
+        stead = Speed * Time.deltaTime;
         if (Time.timeScale == 1)
         {
             if (!stop && Positions.Length != Position)
