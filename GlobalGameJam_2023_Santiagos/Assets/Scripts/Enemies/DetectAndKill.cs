@@ -21,7 +21,7 @@ public class DetectAndKill : MonoBehaviour
     {
         if (isPlayerInside)
         {
-            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.K))
             {
                 StartCoroutine(Activation());
             }

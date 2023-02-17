@@ -30,7 +30,7 @@ public class CameraManager : MonoBehaviour
     {
         if (!IsOnMinimap && !LevelManager.Instance.HasLose)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.L))
             {
                 AudioManager.Instance.Zoom_Out();
                 OpenMinimap();

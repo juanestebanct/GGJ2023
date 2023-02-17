@@ -49,7 +49,7 @@ public class CharacterController : MonoBehaviour
     {
         if (CanShoot)
         {
-            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.K))
             {
                 _particleSystems[_particleIndex].Play();
                 AudioManager.Instance.Player_Shoot();
@@ -77,6 +77,7 @@ public class CharacterController : MonoBehaviour
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) playerDash.Play();
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) playerDash.Play();
         
         if ((int)verticalMovement == 1) _verticalPosition = _northLimit.position.y;
         else if ((int)verticalMovement == -1) _verticalPosition = _southLimit.position.y;

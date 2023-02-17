@@ -47,6 +47,10 @@ public class LevelManager : MonoBehaviour
             if (timer < levelTime) timer += Time.deltaTime;
             else EndLevel(CurrentLevel);
             GenerateEnemies();
+            if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.O))
+            {
+                timer = levelTime - 1;
+            }
         }
     }
 

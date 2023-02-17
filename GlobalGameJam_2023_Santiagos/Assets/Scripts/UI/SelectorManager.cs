@@ -44,7 +44,7 @@ public class SelectorManager : MonoBehaviour
         {
             int positionsCount = AvailablePositions.Count - 1;
             
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 AudioManager.Instance.Seleccionalga();
                 if (currentPosition == 0)
@@ -60,7 +60,7 @@ public class SelectorManager : MonoBehaviour
                     AvailablePositions[currentPosition].SetActive(true);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 AudioManager.Instance.Seleccionalga();
                 if (currentPosition == positionsCount)
@@ -78,7 +78,7 @@ public class SelectorManager : MonoBehaviour
             }
         }
 
-        if (AvailablePositions.Count == 1) currentPosition = 1;
+        if (AvailablePositions.Count == 1 && LevelManager.Instance.CurrentLevel == 1) currentPosition = 1;
     }
     
     public void EnableMinimapSelector() { minimapSelector.SetActive(true); }

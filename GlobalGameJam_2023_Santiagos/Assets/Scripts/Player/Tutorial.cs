@@ -25,18 +25,21 @@ public class Tutorial : MonoBehaviour
             z.SetActive(false);
             StartCoroutine(Controllers());
         }
-        if (tutorialpart2 && Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) 
-            || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+
+        if (tutorialpart2)
         {
-            controlers.SetActive(false);
-            tutorialpart2 = false;
-            StartCoroutine(Atack());
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) 
+                                                  || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                controlers.SetActive(false);
+                tutorialpart2 = false;
+                StartCoroutine(Atack());
+            }
         }
+        
         if (tutorialpart3 && Input.GetKeyDown(KeyCode.X) )
         {
-            attack.SetActive(false);
-            tutorialpart2 = false;
-            Destroy(gameObject);
+            StartCoroutine(HideTutorial());
         }
     }
     private IEnumerator Stars()
@@ -70,7 +73,13 @@ public class Tutorial : MonoBehaviour
             z.SetActive(false);
             StartCoroutine(Controllers());
         }
+    }
 
-
+    private IEnumerator HideTutorial()
+    {
+        tutorialpart2 = false;
+        yield return new WaitForSeconds(2f);
+        attack.SetActive(false);
+        Destroy(gameObject);
     }
 }
