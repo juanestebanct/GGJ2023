@@ -26,10 +26,23 @@ public class CameraManager : MonoBehaviour
         IsOnMinimap = true;
     }
 
+    private void Update()
+    {
+        if (!IsOnMinimap)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                AudioManager.Instance.Zoom_Out();
+                OpenMinimap();
+            }
+        }
+    }
+
     public void ChangeCamera(int camera)
     {
         IsOnMinimap = false;
-        
+        SelectorManager.Instance.EnableMinimapSelector();
+        SelectorManager.Instance.DisableSelectors();
         foreach (var rootButton in RootButtons) rootButton.SetActive(false);
         foreach (var cam in cameras) cam.SetActive(false);
         foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
@@ -45,6 +58,8 @@ public class CameraManager : MonoBehaviour
 
     public void OpenMinimap()
     {
+        SelectorManager.Instance.DisableMinimapSelector();
+        SelectorManager.Instance.EnableSelectors();
         IsOnMinimap = true;
         foreach (var fiumbot in fiumbotControllers) fiumbot.SetActive(false);
         foreach (var rootButton in RootButtons) rootButton.SetActive(true);

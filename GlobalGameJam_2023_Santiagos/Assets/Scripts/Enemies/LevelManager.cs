@@ -57,10 +57,13 @@ public class LevelManager : MonoBehaviour
         foreach (var root in level1Roots) root.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
         SpawnRoot(1,0);
+        SelectorManager.Instance.EnableSelectorPosition(0);
         yield return new WaitForSeconds(10f);
         SpawnRoot(1,1);
+        SelectorManager.Instance.EnableSelectorPosition(1);
         yield return new WaitForSeconds(20f);
         SpawnRoot(1,2);
+        SelectorManager.Instance.EnableSelectorPosition(2);
     }
     
     private IEnumerator Level2_RootManager()
@@ -97,7 +100,6 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnRoot(int level, int root)
     {
-        Debug.Log("Entra");
         HaveRootSpawned[root] = true;
         AudioManager.Instance.Spawn_Root();
         switch (level)

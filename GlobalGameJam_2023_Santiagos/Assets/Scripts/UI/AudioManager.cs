@@ -36,24 +36,28 @@ public class AudioManager : MonoBehaviour
     }
     public void Zoom_In()
     {        
+        ui_as.volume = 1f;
         ui_as.pitch = 1;
         ui_as.clip = sfx[2];
         ui_as.Play();
     }
     public void Zoom_Out()
     {
+        ui_as.volume = 1f;
         ui_as.pitch = 1;
         ui_as.clip = sfx[3];
         ui_as.Play();
     }
-    public void Boton_UI()
+    public void Seleccionalga()
     {
+        ui_as.volume = 0.6f;
         ui_as.pitch = 1;
-        ui_as.clip = sfx[1];
+        ui_as.clip = sfx[8];
         ui_as.Play();
     }
     public void Pause()
     {
+        ui_as.volume = 1f;
         ui_as.pitch = 1;
         ui_as.clip = sfx[6];
         ui_as.Play();
@@ -61,6 +65,7 @@ public class AudioManager : MonoBehaviour
     }
     public void Resume()
     {
+        ui_as.volume = 1f;
         ui_as.pitch = 1;
         ui_as.clip = sfx[7];
         ui_as.Play();
